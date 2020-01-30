@@ -1,0 +1,40 @@
+<div class="background">
+
+
+    <div class="login">
+       <div class="container">
+         <form [formGroup]="adminloginform" (ngSubmit)="onSubmit()">
+           <h1 class="title">Login</h1>
+
+           <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tie"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Email"  formControlName="email">
+          </div>
+          <div class="input-group pt-3" >
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" class="form-control" placeholder="password" formControlName="passwoard" >
+          </div>
+          <div class="error">
+          <div *ngIf="(Error$ | async)">
+            <p class="errormessage">*Email ou mot de passe est incorrect !!</p>
+          </div>
+          </div>
+          <div class="btn-group pt-1 " *ngIf="!(Loading$ | async) else loading">
+            <button class="btnlogin">Login</button>
+          </div> 
+          <ng-template  #loading>
+            <div class="loading"> 
+              <div class="spinner-border text-info" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+           
+        </ng-template>
+        </form>
+       </div>
+    </div>
+</div>

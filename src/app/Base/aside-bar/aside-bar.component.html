@@ -1,0 +1,28 @@
+
+<div class="asidebar">
+     <div class="header">
+     <h4 class="titre">LOGO</h4>
+     </div>
+     <div class="items">
+       <div  *ngFor='let content of this.Contents ; index as i'>  
+        <div class="list-group">
+             <a class="oneitem" [ngClass]="{'active': content.active, 'oneitem': !content.active}"  data-toggle="collapse" (click)="togllecolapse(content.titre , i)"  role="button" aria-expanded="false" aria-controls="collapseExample">
+                 <span class="icone" ><i class="{{ content.icone}}"></i></span>
+                 <span class="title" >{{content.titre}}</span>
+                 <span class="fleche" *ngIf="!content.active"><i class="arrow fas fa-chevron-right"></i></span> 
+                 <span class="fleche" *ngIf="content.active"><i class="arrow fas fa-chevron-down"></i></span> 
+             </a>
+        </div>  
+             <div class="collapse" id="{{content.titre}}" >
+
+                <div class="card lists">                  
+                <div class="list " *ngFor='let id of content.itemsid ; index as b'>  
+                    <a  [routerLink]="['/login']" class="titleT"><span>{{this.getitem(id).titre}}</span></a>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+        
+     </div>
+</div>
