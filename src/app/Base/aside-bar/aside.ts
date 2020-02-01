@@ -14,14 +14,12 @@ export class Aside
      },
      {
         'id':1,
-        'icone':'fas fa-shopping-cart',
-        'titre':'Ecommerce',
+        'icone':'fas fa-user-tie',
+        'titre':'Professeur',
         'active':false,
         'itemsid':[
            4,
-           5,
-           6,
-           7
+           5
         ]
     }
     ]
@@ -46,27 +44,15 @@ export class Aside
         }, 
         {
             id:4,
-            titre:"Products",
-            link:"#",
+            titre:"Chercher un Professeur",
+            link:"/dashboard/prof/chercher",
             plus:""
         }
         , 
         {
             id:5,
-            titre:"Products detail",
-            link:"#",
-            plus:""
-        }, 
-        {
-            id:6,
-            titre:"Orders",
-            link:"#",
-            plus:""
-        }, 
-        {
-            id:7,
-            titre:"Orders detail",
-            link:"#",
+            titre:"Gestion des Professeurs",
+            link:"/dashboard/prof/gestion",
             plus:""
         }
     ]

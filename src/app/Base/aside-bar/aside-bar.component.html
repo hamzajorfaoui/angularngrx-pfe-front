@@ -17,7 +17,7 @@
 
                 <div class="card lists">                  
                 <div class="list " *ngFor='let id of content.itemsid ; index as b'>  
-                    <a  [routerLink]="['/login']" class="titleT"><span>{{this.getitem(id).titre}}</span></a>
+                    <a  [routerLink]="[this.getitem(id).link]" class="titleT"><span>{{this.getitem(id).titre}}</span></a>
                 </div>
                 
                 </div>

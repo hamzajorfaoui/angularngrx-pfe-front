@@ -1,0 +1,28 @@
+.statis{
+    padding-left: 20px !important;
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 6px;
+    height: auto;
+    min-height: 300px;
+    width: 99.9%;
+    margin-left: 1px;
+} 
+.portlet{
+    background-color: white;
+    min-height: 100px;
+    width: 100%;
+    border-radius: 3px;
+}
+.title{
+    width: 100%;
+    padding-top: 15px;
+    border-bottom: 1px solid #4397774f;
+    padding-bottom: 15px;
+    .contenu{
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: #025c59;
+        float: left;
+    }
+}

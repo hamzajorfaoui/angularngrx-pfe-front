@@ -23,7 +23,7 @@ export const defaultLogin :LoginState={
     error: "" 
 }
 
-export function LoginReducer (state=defaultLogin, action: LoginActions.action) :LoginState{
+export function LoginReducer (state=defaultLogin, action: LoginActions.action ) :LoginState{
 switch (action.type) {
     case LoginActions.LoginActionTypes.LOAD_Login:
         return{
@@ -31,6 +31,7 @@ switch (action.type) {
               loading:true,
         }
     case LoginActions.LoginActionTypes.Login_SUCCES:
+        
         return{
              ...state,
               loading:false,
@@ -44,6 +45,14 @@ switch (action.type) {
                   loaded:true,
                   error:action.payload
             }
+     case LoginActions.LoginActionTypes.IS_LOGGEDIN:
+            return{
+                 ...state,
+                  Login:{isLoggedIn:true,
+                  token:localStorage.token},
+                  loading:false,
+                  loaded:false,
+            }       
 
     default:
         return state;

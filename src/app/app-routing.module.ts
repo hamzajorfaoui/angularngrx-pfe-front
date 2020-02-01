@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './Base/dashboard/dashboard.component';
 import { HomepageComponent } from './Base/pages/homepage/homepage.component';
+import { AuthguardGuard } from './Services/authguard.guard';
+import { NOauthGuard } from './Services/noauth.guard';
 
 
 const routes: Routes = [
-  {path:"login", component:LoginComponent},
-  {path:"dashboard" , component:DashboardComponent , children:[
-    {path:"home" , component:HomepageComponent}
-  ]},
-  
+  {path:"login", component:LoginComponent , canActivate:[NOauthGuard]},
+  {path:"dashboard" , loadChildren:"./Base/base.module#BaseModule" , canActivate:[AuthguardGuard]},
+  {path:"**", redirectTo:"login"},
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Aside } from "./aside";
 declare var $;
 
@@ -7,7 +7,7 @@ declare var $;
   templateUrl: './aside-bar.component.html',
   styleUrls: ['./aside-bar.component.scss']
 })
-export class AsideBarComponent implements OnInit {
+export class AsideBarComponent implements OnInit, AfterViewInit {
 
   Contents:any=[]; 
   Items:any =[];
@@ -16,6 +16,10 @@ export class AsideBarComponent implements OnInit {
   ngOnInit() {
     this.Contents = Aside.content;
     this.Items=Aside.items;
+    this.Showcollapse();
+  }
+  ngAfterViewInit() {
+    this.Showcollapse();
   }
   getitem(id:Number){
     var item1 : any = 0;
@@ -26,6 +30,17 @@ export class AsideBarComponent implements OnInit {
       }
     });
    return item1
+  }
+
+  Showcollapse(){
+    this.Contents.forEach(item => {
+      if (item.active == true ) {
+        //item.active = false;
+        $('#'+item.titre).collapse('show');
+        console.log(item.titre);
+        
+      }
+    });
   }
   togllecolapse(idcolapse , idcontent){
     for (let index = 0; index < this.Contents.length; index++) {

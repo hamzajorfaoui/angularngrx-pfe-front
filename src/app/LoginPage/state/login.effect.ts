@@ -9,12 +9,14 @@ import { map , mergeMap , catchError } from "rxjs/operators";
 
 import * as LoginActions from "./login.action";
 import { Login ,Userinfo } from './../login.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LoginEffects{
     constructor(
         private loginS :LoginserviceService,
-        private actions$ : Actions
+        private actions$ : Actions,
+        private route:Router
     ){}
 
 loginreponse:Login={
@@ -25,6 +27,7 @@ tesreploadlogin(reponse) :Action{
       this.loginreponse.isLoggedIn=true;
       this.loginreponse.token=reponse.access_token;
       localStorage.setItem('token',reponse.access_token);
+      this.route.navigate(['/dashboard']);
       return new  LoginActions.LoginSucces(this.loginreponse)
     
 }    
