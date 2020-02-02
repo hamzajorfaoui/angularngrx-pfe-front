@@ -13,7 +13,7 @@ export class Aside
          ]
      },
      {
-        'id':1,
+        'id':2,
         'icone':'fas fa-user-tie',
         'titre':'Professeur',
         'active':false,
@@ -21,7 +21,18 @@ export class Aside
            4,
            5
         ]
-    }
+    },
+    {
+       'id':3,
+       'icone':'far fa-building',
+       'titre':'Departement-Filiere',
+       'active':false,
+       'itemsid':[
+          6,
+          7
+       ]
+   }
+
     ]
     public static items = [
         {
@@ -53,6 +64,20 @@ export class Aside
             id:5,
             titre:"Gestion des Professeurs",
             link:"/dashboard/prof/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:6,
+            titre:"Gestion  departements",
+            link:"/dashboard/departement/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:7,
+            titre:"Gestion  Filiéres",
+            link:"/dashboard/filiere/gestion",
             plus:""
         }
     ]

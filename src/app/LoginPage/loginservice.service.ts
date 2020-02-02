@@ -21,6 +21,6 @@ export class LoginserviceService {
   }
   logout(){
    localStorage.removeItem('token');
-   this.route.navigate['/login'];
+   this.route.navigate(['/login']);
   }
 }

@@ -7,12 +7,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GestionprofsComponent } from './pages/Prof/gestionprofs/gestionprofs.component';
 import { PortletComponent } from './material/portlet/portlet.component';
+import { DxDataGridModule } from 'devextreme-angular';
+import { DepartementComponent } from './pages/departement/departement/departement.component';
+import { FiliereComponent } from './pages/filiere/filiere.component';
 
 export const BaseRouting : Routes = [
             {path:'' , component:DashboardComponent , 
   children:[
             {path:'' , component:HomepageComponent},
-            {path:'prof/gestion' , component:GestionprofsComponent}
+            {path:'prof/gestion' , component:GestionprofsComponent},
+            {path:'departement/gestion' , component:DepartementComponent},
+            {path:'filiere/gestion' , component:FiliereComponent}
+
   ] 
   }
 ]
@@ -24,8 +30,11 @@ export const BaseRouting : Routes = [
     NavBarComponent,
     HomepageComponent,
     GestionprofsComponent,
-    PortletComponent],
+    PortletComponent,
+    DepartementComponent,
+    FiliereComponent],
   imports: [
+    DxDataGridModule,
     CommonModule,
     RouterModule.forChild(BaseRouting)
   ]
