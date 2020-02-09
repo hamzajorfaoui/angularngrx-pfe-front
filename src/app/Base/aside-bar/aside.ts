@@ -25,13 +25,22 @@ export class Aside
     {
        'id':3,
        'icone':'far fa-building',
-       'titre':'Departement-Filiere',
+       'titre':'Departement',
        'active':false,
        'itemsid':[
           6,
           7
        ]
-   }
+   },
+   {
+      'id':4,
+      'icone':'fas fa-user-graduate',
+      'titre':'Etudiant',
+      'active':false,
+      'itemsid':[
+         8
+      ]
+  }
 
     ]
     public static items = [
@@ -69,15 +78,22 @@ export class Aside
         , 
         {
             id:6,
-            titre:"Gestion  departements",
+            titre:"Gestion departements",
             link:"/dashboard/departement/gestion",
             plus:""
         }
         , 
         {
             id:7,
-            titre:"Gestion  Filiéres",
+            titre:"Gestion Filiéres",
             link:"/dashboard/filiere/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:8,
+            titre:"Gestion Etudiant",
+            link:"/dashboard/etudiant/gestion",
             plus:""
         }
     ]

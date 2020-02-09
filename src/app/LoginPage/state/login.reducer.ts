@@ -39,6 +39,7 @@ switch (action.type) {
               Login:action.payload
         }
     case LoginActions.LoginActionTypes.Login_FAIL:
+        
             return{
                  ...state,
                   loading:false,

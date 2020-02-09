@@ -1,0 +1,136 @@
+::ng-deep .containe {
+    position: relative;
+}
+
+::ng-deep .containe, .left-content {
+    min-height: 550px;
+}
+
+::ng-deep .left-content {
+    margin-top: 20px;
+    color: #025c59;
+    display: inline-block;
+    width: 180px;
+    padding: 0 10px 10px;
+    background-color: #f3f3f3;
+    box-shadow: -5px 0px 14px -8px rgba(0, 0, 0, 0.25) inset;
+}
+
+::ng-deep .right-content {
+    margin-top: 20px;
+    background-color: white;
+    position: absolute;
+    right: 0;
+    left: 180px;
+    top: 0;
+    min-height: 550px;
+    // height: 100%;
+}
+
+sup {
+    font-size: 0.8em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+::ng-deep .right-content .sub-title {
+    font-size: 120%;
+    color: rgba(152, 152, 152, 0.8);
+}
+
+::ng-deep .title-container {
+    min-height: 140px;
+    margin-bottom: 10px;
+}
+
+::ng-deep .title-container .country-name {
+    font-size: 240%;
+    font-weight: bold;
+    line-height: 34px;
+    margin-bottom: 10px;
+}
+
+::ng-deep .title-container > div:not(.flag) {
+    margin-left: 204px;
+}
+
+::ng-deep .statsDEV {
+    display: table;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+::ng-deep .statsDEVDEV > div {
+    display: table-cell;
+    text-align: center;
+    border: 1px solid rgba(191, 191, 191, 0.25);
+    padding: 20px 0 25px;
+    width: 33%;
+}
+
+::ng-deep .statsDEV > div:first-child, .statsDEV > div:last-child {
+    border-right-width: 0; 
+    border-left-width: 0;
+}
+
+::ng-deep .statsDEV .stat-value {
+    font-size: 200%;
+}
+
+::ng-deep #tabpanel {
+    margin-top: 10px;
+}
+
+::ng-deep #tabpanel .dx-multiview-wrapper {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+::ng-deep #tabpanel .tab-panel-title {
+    font-size: 120%;
+    font-weight: 500;
+}
+
+::ng-deep #tabpanel .dx-multiview-item-content {
+    padding: 20px 0 22px;
+    min-height: 178px;
+    position: relative;
+}
+
+::ng-deep #tabpanel .right-content {
+    top: 15px;
+    left: 202px;
+}
+
+::ng-deep #tabpanel .statsDEV {
+    width: 398px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(191, 191, 191, 0.25);
+}
+
+::ng-deep #tabpanel .statsDEV > div {
+    padding: 7px 0;
+    text-align: left;
+    border: 0;
+}
+
+::ng-deep #tabpanel .statsDEV > div:first-child {
+    width: 40%;
+}
+
+::ng-deep #tabpanel .statsDEV > div:not(:first-child) {
+    width: 30%;
+}
+
+::ng-deep .flag {
+    width: 172px;
+    max-height: 122px;
+    border: 1px solid rgba(191, 191, 191, 0.25);
+    float: left;
+    margin: 0 30px 10px 0;
+}
+
+::ng-deep .left-content .dx-treeview-node.dx-state-selected > .dx-item > .dx-item-content {
+    font-weight: 500;
+}

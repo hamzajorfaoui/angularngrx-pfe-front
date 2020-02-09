@@ -18,6 +18,7 @@ export class ErrorInterceptorService implements HttpInterceptor{
                   if(localStorage.token){
                     this.authS.logout();
                   }
+                  return throwError(error)
                  
             }else{
                const err = error.error.message || error.error.statuts

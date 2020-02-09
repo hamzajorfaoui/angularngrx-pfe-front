@@ -18,7 +18,7 @@ export class LoginSucces implements Action{
 }
 export class LoginFail implements Action{
     readonly type=LoginActionTypes.Login_FAIL;
-    constructor(public payload : String){}
+    constructor(public payload : any){}
 }
 export class ISLOGGEDIN implements Action{
     readonly type=LoginActionTypes.IS_LOGGEDIN;
