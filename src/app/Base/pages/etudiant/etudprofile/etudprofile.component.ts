@@ -1,6 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { EtudiantService } from './../etudiant.service';
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-etudprofile',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EtudprofileComponent implements OnInit {
   etudiant;
-  constructor(private etudeS:EtudiantService , private activeR:ActivatedRoute) { }
+  constructor(private etudeS:EtudiantService , private activeR:ActivatedRoute , private location:Location) { }
   loading = true;
   ngOnInit() {
     this.etudeS.getetudiant(this.activeR.snapshot.params['etudiantid']).subscribe(
@@ -24,4 +25,7 @@ export class EtudprofileComponent implements OnInit {
     type: "success",
     useSubmitBehavior: true
 }
+  goback(){
+    this.location.back();
+  }
 }

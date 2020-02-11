@@ -40,6 +40,15 @@ export class Aside
       'itemsid':[
          8
       ]
+  },
+   {
+      'id':5,
+      'icone':'far fa-newspaper',
+      'titre':'Actualité',
+      'active':false,
+      'itemsid':[
+         9
+      ]
   }
 
     ]
@@ -94,6 +103,13 @@ export class Aside
             id:8,
             titre:"Gestion Etudiant",
             link:"/dashboard/etudiant/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:9,
+            titre:"Gestion Actualité",
+            link:"/dashboard/actualite/gestion",
             plus:""
         }
     ]

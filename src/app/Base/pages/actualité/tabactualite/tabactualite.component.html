@@ -1,0 +1,124 @@
+
+<app-portlet title="Gestion des annonces" id="GDA">
+
+    <div class="tableau"  *ngIf="AnnocesF && dataSource">
+        <h6 style="color:#348f6cec;">Ajouter Une Actualité :</h6>
+        <form  (submit)="onFormSubmit($event)">
+        <dx-form id="form"
+            [formData]="dataSource">
+            <dxi-item dataField="professeur" editorType="dxSelectBox" [editorOptions]="{ dataSource: proflist, displayExpr:'fullname',searchEnabled: true, value: '', valueExpr:'id' }">
+                <dxi-validation-rule 
+                        type="required">
+                </dxi-validation-rule> 
+            </dxi-item>
+            <dxi-item itemType="group" cssClass="first-group" [colCount]="2">
+                <dxi-item itemType="group" >
+                    <dxi-item dataField="matiere" editorType="dxSelectBox" [editorOptions]="{ dataSource: matierelist, displayExpr:'name',searchEnabled: true, value: '' , valueExpr:'id' }">
+                    <dxi-validation-rule 
+                        type="required">
+                    </dxi-validation-rule> 
+                    </dxi-item>
+                        <dxi-item dataField="Date Prévu"  editorType="dxDateBox"
+                        [editorOptions]="{ type:'datetime'}">
+                        <dxi-validation-rule 
+                        type="required">
+                        </dxi-validation-rule> 
+                        </dxi-item>
+                </dxi-item>
+                <dxi-item itemType="group" >
+                    <dxi-item dataField="type d'annonce" editorType="dxSelectBox" [editorOptions]="{ dataSource: typelist, displayExpr:'type',searchEnabled: true, value: '' , valueExpr:'id'}">
+                    <dxi-validation-rule 
+                    type="required">
+                    </dxi-validation-rule>
+                    </dxi-item>
+                <dxi-item dataField="Date aura Lieu"  editorType="dxDateBox"
+                [editorOptions]="{ type:'datetime'}">
+                    
+                    <dxi-validation-rule 
+                        type="required">
+                    </dxi-validation-rule>
+                    </dxi-item>
+                </dxi-item>    
+            </dxi-item>
+            
+               <dxi-item 
+               *ngIf="!loading"
+                id="buttonsubmit"
+                caption="Update"
+                itemType="button"
+                horizontalAlignment="right"
+                [buttonOptions]="buttonOptions">
+                </dxi-item> 
+                
+        </dx-form>
+        <div class="spinner-border text-success" role="status" *ngIf="loading" style="height:30px;float: right;">
+            <span class="sr-only">Loading...</span>
+        </div>
+        </form>
+        
+<div  *ngIf="AnnocesF">
+        <div id="data-grid-demo">
+        <h6 style="color:#348f6cec;">Liste des Annonces</h6>
+        <dx-data-grid 
+        id="gridContainer" 
+        [dataSource]="AnnocesF"
+        keyExpr="id"
+        [showBorders]="true">
+    
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxi-column dataField="id" [width]="70" caption="Id"></dxi-column>
+        <dxi-column dataField="salle"  [width]="70"></dxi-column>
+        <dxi-column dataField="typeannonce" caption="Type d'annonce"  ></dxi-column>
+        <dxi-column dataField="prof" caption="Professeur"  ></dxi-column>
+        <dxi-column dataField="date_prevue" [width]="130"></dxi-column>
+        <dxi-column dataField="date_auralieu" [width]="130" ></dxi-column>
+        <!-- <dxi-column dataField="created_at" [width]="130"></dxi-column>
+        <dxi-column dataField="updated_at" [width]="130"></dxi-column> -->
+        <!-- <dxi-column dataField="id" [width]="100" [allowFiltering]="false"
+        [allowSorting]="false" cellTemplate="cellTemplate" caption="Profile"></dxi-column>
+        <div *dxTemplate="let data of 'cellTemplate'" class="profile">
+            <a [routerLink]="['/dashboard/etudiant/profile',data.value]" ><i class="grrr far fa-id-card">{{data.id}}</i></a>
+        </div> -->
+        <dxo-editing 
+                    mode="popup"
+                    [refreshMode]="full"
+                    [allowDeleting]="true"
+                    [allowUpdating]="true">
+                    <dxo-popup
+                    title="Information de Professeur"
+                    [showTitle]="true"
+                    [width]="400"
+                    [height]="360"
+                    [position]="{ my: 'center', at: 'center', of: window }">
+                </dxo-popup>
+                <dxo-form> 
+                    <dxi-item dataField="fullname"  [colSpan]="2">
+                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="cin"  [colSpan]="2">
+                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                        <dxi-validation-rule type="async" message="cin is already exist" [validationCallback]="asyncValidationcin" *ngIf="itemVisible"></dxi-validation-rule>
+                        <!-- <dxi-validation-rule type="async" message="cin is already exist" [validationCallback]="asyncValidationupdate" *ngIf="!itemVisible"></dxi-validation-rule> -->
+                       </dxi-item>      
+                    <dxi-item dataField="cne"  [colSpan]="2">
+                        <dxi-validation-rule type="required"></dxi-validation-rule>
+                        <dxi-validation-rule type="async" message="cin is already exist" [validationCallback]="asyncValidationcne" *ngIf="itemVisible"></dxi-validation-rule>
+    
+                    </dxi-item>
+                </dxo-form>
+                
+                
+                </dxo-editing>
+                <!-- <div *dxTemplate="let data of dataSource">
+                    <span class="dx-icon-home icon"></span> {{data.cne}} 
+                  </div> -->
+    </dx-data-grid>
+    </div>
+</div>
+
+</div>
+
+
+</app-portlet>
+<app-loadingpage loading={{loadingfull}} idparent="GDA"></app-loadingpage>

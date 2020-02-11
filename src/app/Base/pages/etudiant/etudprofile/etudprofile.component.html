@@ -1,6 +1,9 @@
 
 <div id="parent">
 <app-portlet title="Profile Etudiant">
+	<div >
+     <a (click)="goback()" class="retour"><i class="fas fa-arrow-left"></i><span class="retorspan"> Retour</span></a>
+	</div>
 	<div class="tableau" *ngIf="etudiant">
 		<div class="p-3 mb-2 bg-info text-white" *ngIf="!etudiant.compte">
 			cet etudiant n'as pas encore créer un compte !!
