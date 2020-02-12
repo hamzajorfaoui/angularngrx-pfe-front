@@ -1,6 +1,6 @@
 import { EtudiantService } from './../../etudiant/etudiant.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router ,NavigationEnd} from '@angular/router';
 
 @Component({
   selector: 'app-actualite',
@@ -30,6 +30,18 @@ export class ActualiteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.events.subscribe(event=>{
+      if (event instanceof NavigationEnd) {
+       if(this.route.url == '/dashboard/actualite/annonce/gestion'){
+        this.deptfilieres.forEach(element => {
+          element['items'].forEach(element => {
+                element.selected = false;
+                this.selectedfiliereid = 0;
+          });
+        });
+       }
+      }
+    })
   }
 
   selectedfiliereid = 0;
@@ -40,7 +52,7 @@ export class ActualiteComponent implements OnInit {
       // console.log(e.itemData.id)
       this.selectedfiliereid =e.itemData.id;
       this.selectedfilieretitle=e.itemData.text;
-      this.route.navigate(['/dashboard/actualite/gestion/'+e.itemData.text+'/'+e.itemData.id])
+      this.route.navigate(['/dashboard/actualite/annonce/gestion/'+e.itemData.text+'/'+e.itemData.id])
     }
     } 
   }

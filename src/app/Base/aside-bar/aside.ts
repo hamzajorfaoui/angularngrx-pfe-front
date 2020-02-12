@@ -47,7 +47,8 @@ export class Aside
       'titre':'Actualité',
       'active':false,
       'itemsid':[
-         9
+         9,
+         10
       ]
   }
 
@@ -108,7 +109,14 @@ export class Aside
         , 
         {
             id:9,
-            titre:"Gestion Actualité",
+            titre:"Gestion Annonces",
+            link:"/dashboard/actualite/annonce/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:10,
+            titre:"Gestion Actualités",
             link:"/dashboard/actualite/gestion",
             plus:""
         }

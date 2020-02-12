@@ -1,0 +1,11 @@
+.tableau{
+    margin-top: 10px;
+    margin-bottom: 100px;
+    margin-right: 30px;
+}
+::ng-deep .dx-button.dx-button-success {
+    background-color: #429676;
+}
+::ng-deep .dx-button.dx-button-success.dx-state-hover{
+background-color: #2b5f4b;
+}

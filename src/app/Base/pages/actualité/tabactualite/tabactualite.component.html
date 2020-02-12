@@ -2,30 +2,39 @@
 <app-portlet title="Gestion des annonces" id="GDA">
 
     <div class="tableau"  *ngIf="AnnocesF && dataSource">
-        <h6 style="color:#348f6cec;">Ajouter Une Actualité :</h6>
+        <h6 style="color:#348f6cec;">Ajouter Une Annoce :</h6>
         <form  (submit)="onFormSubmit($event)">
         <dx-form id="form"
             [formData]="dataSource">
-            <dxi-item dataField="professeur" editorType="dxSelectBox" [editorOptions]="{ dataSource: proflist, displayExpr:'fullname',searchEnabled: true, value: '', valueExpr:'id' }">
-                <dxi-validation-rule 
-                        type="required">
-                </dxi-validation-rule> 
-            </dxi-item>
+            
             <dxi-item itemType="group" cssClass="first-group" [colCount]="2">
                 <dxi-item itemType="group" >
+                    <dxi-item dataField="professeur" editorType="dxSelectBox" [editorOptions]="{ dataSource: proflist, displayExpr:'fullname',searchEnabled: true, value: '', valueExpr:'id' }">
+                        <dxi-validation-rule 
+                                type="required">
+                        </dxi-validation-rule> 
+                    </dxi-item>
+
                     <dxi-item dataField="matiere" editorType="dxSelectBox" [editorOptions]="{ dataSource: matierelist, displayExpr:'name',searchEnabled: true, value: '' , valueExpr:'id' }">
                     <dxi-validation-rule 
                         type="required">
                     </dxi-validation-rule> 
                     </dxi-item>
+
                         <dxi-item dataField="Date Prévu"  editorType="dxDateBox"
                         [editorOptions]="{ type:'datetime'}">
                         <dxi-validation-rule 
                         type="required">
-                        </dxi-validation-rule> 
+                         </dxi-validation-rule> 
                         </dxi-item>
                 </dxi-item>
                 <dxi-item itemType="group" >
+                    <dxi-item dataField="salle" editorType="dxNumberBox"  [editorOptions]="{  max:50 , min:1 , showSpinButtons:'true'}" >
+                        <dxi-validation-rule 
+                                type="required">
+                        </dxi-validation-rule> 
+                    </dxi-item>
+
                     <dxi-item dataField="type d'annonce" editorType="dxSelectBox" [editorOptions]="{ dataSource: typelist, displayExpr:'type',searchEnabled: true, value: '' , valueExpr:'id'}">
                     <dxi-validation-rule 
                     type="required">
@@ -51,15 +60,19 @@
                 </dxi-item> 
                 
         </dx-form>
-        <div class="spinner-border text-success" role="status" *ngIf="loading" style="height:30px;float: right;">
+        <div *ngIf="loading" style="width: 100%;height:30px;">
+          <div class="spinner-border text-success" role="status" style="float: right;">
             <span class="sr-only">Loading...</span>
+        </div>  
         </div>
+        
         </form>
         
 <div  *ngIf="AnnocesF">
         <div id="data-grid-demo">
         <h6 style="color:#348f6cec;">Liste des Annonces</h6>
         <dx-data-grid 
+        #targetDataGrid
         id="gridContainer" 
         [dataSource]="AnnocesF"
         keyExpr="id"
@@ -84,7 +97,7 @@
                     mode="popup"
                     [refreshMode]="full"
                     [allowDeleting]="true"
-                    [allowUpdating]="true">
+                    [allowUpdating]="false">
                     <dxo-popup
                     title="Information de Professeur"
                     [showTitle]="true"
