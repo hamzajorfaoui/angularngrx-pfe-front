@@ -32,7 +32,7 @@ export const actualiteRouting : Routes = [
     DxCheckBoxModule,
     DxListModule,
     SharedModuleModule,
-    DxTreeViewModule,
+    DxTreeViewModule, 
     CommonModule,
     RouterModule.forChild(actualiteRouting)
   ]

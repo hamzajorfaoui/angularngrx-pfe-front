@@ -1,3 +1,4 @@
+import { map, filter, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -54,11 +55,66 @@ export class ActualiteService {
            })
   }
 
-  addannoce(titre , content , idF){
+  addactualite(titre , content , idF){
    return this.http.post("http://127.0.0.1:8000/api/actualite",{
      "title":titre,
      "contenu":content,
      "filiers_id":idF
    })
+  }
+  getactualites(){
+    return this.http.get("http://127.0.0.1:8000/api/actualite")
+           .pipe(
+             map((data:any[])=>{return data['data']
+                .filter((data:any)=>{
+                        data.filiresname = ""
+                        for (const filiere of data.filieres) {
+                          data.filiresname += filiere.name+" ";
+                        }
+                        return data
+                })
+             })
+           )
+           .toPromise()
+           .then(
+             data=>{
+               console.log(data);
+               return data
+             }
+           )
+  }
+
+  updateactualite(idA , value){
+    return this.http.put("http://127.0.0.1:8000/api/actualite/"+idA,value)
+    .pipe(
+      map((data:any[])=>{return data['data']
+         .filter((data:any)=>{
+                 data.filiresname = ""
+                 for (const filiere of data.filieres) {
+                   data.filiresname += filiere.name+" ";
+                 }
+                 return data
+         })
+      })
+    )
+    .toPromise()
+    .then(
+      data=>{
+        console.log(data);
+        return data
+      }
+    )
+  }
+  removeactualite(idA){
+    return this.http.delete("http://127.0.0.1:8000/api/actualite/"+idA)
+           .toPromise()
+           .then(
+             data=>{
+               return data
+             }
+           )
+           .catch(er=>{
+             throw er
+           }) 
   }
 } 

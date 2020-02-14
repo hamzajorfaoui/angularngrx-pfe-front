@@ -1,0 +1,46 @@
+ 
+<app-portlet title="Liste des matiéres">
+    <div class="tableau" *ngIf="dataSource">
+        <div id="data-grid-demo">
+            <h5 class="filieretitle">Filiére : {{Filieretitle}}</h5>
+    <dx-data-grid 
+    id="gridContainer" 
+    [dataSource]="dataSource"
+    keyExpr="id"
+    [showBorders]="true">
+
+    <dxo-selection mode="single"></dxo-selection>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxi-column dataField="id" [width]="50"></dxi-column>
+    <dxi-column dataField="name"></dxi-column>
+    <dxi-column dataField="created_at" [width]="130"></dxi-column>
+    <dxi-column dataField="updated_at" [width]="130"></dxi-column>
+    
+    <dxo-editing 
+                mode="popup"
+                [refreshMode]="full"
+                [allowAdding]="true"
+                [allowDeleting]="true"
+                [allowUpdating]="true">
+                <dxo-popup
+                title="Information de Professeur"
+                [showTitle]="true"
+                [width]="400"
+                [height]="230"
+                [position]="{ my: 'center', at: 'center', of: window }">
+            </dxo-popup>
+            <dxo-form> 
+                <dxi-item dataField="name"  [colSpan]="2">
+                    <dxi-validation-rule type="required"></dxi-validation-rule>
+                </dxi-item>
+            </dxo-form>
+            </dxo-editing>
+        </dx-data-grid>
+        </div></div>
+        <div *ngIf="!dataSource">
+        <h3>Choisissez une filiere ... </h3>
+        </div>
+
+
+</app-portlet>
+

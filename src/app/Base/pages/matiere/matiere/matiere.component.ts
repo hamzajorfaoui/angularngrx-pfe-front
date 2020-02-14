@@ -1,33 +1,19 @@
-import { EtudiantService } from './../etudiant.service';
+import { EtudiantService } from './../../etudiant/etudiant.service';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'app-etudiant',
-  templateUrl: './etudiant.component.html',
-  styleUrls: ['./etudiant.component.scss']
+  selector: 'app-matiere',
+  templateUrl: './matiere.component.html',
+  styleUrls: ['./matiere.component.scss']
 })
-export class EtudiantComponent implements OnInit {
-
+export class MatiereComponent implements OnInit {
+ 
   deptfilieres :any[];
   tabPanelIndex: number;
   loading=false;
   selectedfiliereid:number =  0;
   selectedfilieretitle="";
-  
-  changeSelection(e) {
-    if(e.itemData.departement_id){
-    if(this.selectedfiliereid != e.itemData.id){
-      // console.log(e.itemData.id)
-      // this.selectedfiliereid =e.itemData.id;
-      // this.selectedfilieretitle=e.itemData.text;
-      this.route.navigate(['/dashboard/etudiant/gestion/'+e.itemData.text+'/'+e.itemData.id])
-    }
-    }
-   
-      
-  }
-
   constructor(private service: EtudiantService , private route:Router , private activroute: ActivatedRoute) {
     this.loading = true;
     service.getdeptfiliere().subscribe(data=>{
@@ -44,11 +30,9 @@ export class EtudiantComponent implements OnInit {
         });
       }
     })
-   
-  }
+   }
 
   ngOnInit() {
-
     this.route.events.subscribe(event=>{
       if (event instanceof NavigationEnd) {
        if(this.route.url == '/dashboard/etudiant/gestion'){
@@ -61,8 +45,19 @@ export class EtudiantComponent implements OnInit {
        }
       }
     })
- 
   }
 
+  changeSelection(e) {
+    if(e.itemData.departement_id){
+    if(this.selectedfiliereid != e.itemData.id){
+      // console.log(e.itemData.id)
+      // this.selectedfiliereid =e.itemData.id;
+      // this.selectedfilieretitle=e.itemData.text;
+      this.route.navigate(['/dashboard/filiere/matiere/gestion/'+e.itemData.text+'/'+e.itemData.id])
+    }
+    }
+   
+      
+  }
 
 }

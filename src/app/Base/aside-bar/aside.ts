@@ -29,7 +29,8 @@ export class Aside
        'active':false,
        'itemsid':[
           6,
-          7
+          7,
+          11
        ]
    },
    {
@@ -118,6 +119,13 @@ export class Aside
             id:10,
             titre:"Gestion Actualités",
             link:"/dashboard/actualite/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:11,
+            titre:"Gestion matiere",
+            link:"/dashboard/filiere/matiere/gestion",
             plus:""
         }
     ]

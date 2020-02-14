@@ -12,6 +12,8 @@ import { DxDataGridModule, DxTemplateModule ,DxTreeViewModule} from 'devextreme-
 import { DepartementComponent } from './pages/departement/departement/departement.component';
 import { FiliereComponent } from './pages/filiere/filiere.component';
 import {  EtudiantModule} from "./pages/etudiant/etudiant.module";
+import { MatiereComponent } from './pages/matiere/matiere/matiere.component';
+import { TabmatiereComponent } from './pages/matiere/tabmatiere/tabmatiere.component';
 
 export const BaseRouting : Routes = [
             {path:'' , component:DashboardComponent , 
@@ -20,6 +22,9 @@ export const BaseRouting : Routes = [
             {path:'prof/gestion' , component:GestionprofsComponent},
             {path:'departement/gestion' , component:DepartementComponent},
             {path:'filiere/gestion' , component:FiliereComponent},
+            {path:'filiere/matiere/gestion' , component:MatiereComponent , children:[
+              {path:':filierename/:filiereid' , component:TabmatiereComponent}
+            ]},
             {path:'etudiant' , loadChildren:"./pages/etudiant/etudiant.module#EtudiantModule"},
             {path:'actualite' ,loadChildren:"./pages/actualité/actualite.module#ActualiteModule"}      
   ] 
@@ -44,6 +49,8 @@ export const BaseRouting : Routes = [
     HomepageComponent,
     GestionprofsComponent,
     DepartementComponent,
-    FiliereComponent]
+    FiliereComponent,
+    MatiereComponent,
+    TabmatiereComponent]
 })
 export class BaseModule { }
