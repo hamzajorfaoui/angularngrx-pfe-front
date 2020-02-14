@@ -8,7 +8,7 @@ import { Observable , of } from "rxjs";
 import { map , mergeMap , catchError } from "rxjs/operators";
 
 import * as LoginActions from "./login.action";
-import { Login ,Userinfo } from './../login.model';
+import { Login ,Userinfo , User} from './../login.model';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -42,10 +42,31 @@ loadlogin$:Observable<Action> = this.actions$.pipe(
         this.loginS.Login(logininfo).pipe(
             map(
                 (rep)=> this.tesreploadlogin(rep)
+                
             ),catchError(
                 err =>of(new LoginActions.LoginFail(err))
                 )
         )
     )
 );
+
+@Effect()
+loginuser$:Observable<Action> = this.actions$.pipe(
+    ofType<LoginActions.LOGINUSER>(
+        LoginActions.LoginActionTypes.LOGIN_USER
+    ),
+    map((action:LoginActions.LOGINUSER)=>action),
+    mergeMap(
+        ()=>
+        this.loginS.me().pipe(
+            map(
+                (rep :User)=> new LoginActions.LOGINUSERSUCCES(rep)
+            ),catchError(
+                err =>of(new LoginActions.LoginFail(err))
+                )
+        )
+    )
+);
+
+
 }

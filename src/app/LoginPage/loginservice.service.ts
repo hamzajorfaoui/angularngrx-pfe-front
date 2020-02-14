@@ -23,4 +23,7 @@ export class LoginserviceService {
    localStorage.removeItem('token');
    this.route.navigate(['/login']);
   }
+  me(){
+    return this.http.get("http://127.0.0.1:8000/api/me")
+  }
 }

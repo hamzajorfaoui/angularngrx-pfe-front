@@ -1,4 +1,4 @@
-import { Login } from './../login.model';
+import { Login , User} from './../login.model';
 import * as LoginActions from "./login.action";
 import * as fromRoot from './../../State/app-state';
 
@@ -8,7 +8,8 @@ export interface LoginState {
     Login:Login,
     loading: boolean,
     loaded: boolean,
-    error: String
+    error: String,
+    user:User
 } 
 export interface AppState extends fromRoot.AppState{
     Login:LoginState;
@@ -18,6 +19,7 @@ export const defaultLogin :LoginState={
         isLoggedIn:false,
         token:""
     },
+    user:null,
     loading: false,
     loaded: false,
     error: "" 
@@ -53,7 +55,20 @@ switch (action.type) {
                   token:localStorage.token},
                   loading:false,
                   loaded:false,
+            }  
+    case LoginActions.LoginActionTypes.LOGIN_USER:
+          
+            return{
+                 ...state,
+                 loading:true,
             }       
+      case LoginActions.LoginActionTypes.LOGIN_USER_SUCCES:
+
+            return{
+                 ...state,
+                  user:action.payload,
+                  loading:false
+            }             
 
     default:
         return state;
@@ -79,4 +94,8 @@ export const getloading = createSelector(
 export const getloaded = createSelector(
     getloginFeatureState,
     (state:LoginState)=> state.loaded
+)
+export const getuser= createSelector( 
+    getloginFeatureState,
+    (state:LoginState)=> state.user
 )
