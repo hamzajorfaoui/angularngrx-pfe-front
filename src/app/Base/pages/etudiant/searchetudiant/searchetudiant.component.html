@@ -1,0 +1,41 @@
+<app-portlet title="Chercher Un etudiant">
+
+    <div class="tableau">
+       <dx-text-box placeholder="Enter full name here..." 
+                    mode="search" 
+                    [height]="50"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="onValueChangedTX($event)"></dx-text-box>
+        <div class="dx-field" style="margin-top: 15px; margin-bottom: 15px;">
+            <div class="dx-field-label">Chercher Avec :</div>
+            <div class="dx-field-value">
+                <dx-radio-group
+                    [items]="priorities"
+                    (onValueChanged)="onValueChanged($event)"
+                    layout="horizontal">
+                </dx-radio-group>
+            </div>
+        </div>
+   
+       <dx-list 
+       #list
+       noDataText="Not found !!"
+       [dataSource]="etudiants"
+       [height]="400"
+       keyExpr="id"
+       (onItemClick) = "onclicklist($event)"
+       [searchEnabled]="false">
+           <!-- <dxo-search-editor-options
+           [onOptionChanged]="logOption">
+       </dxo-search-editor-options> -->
+           <div *dxTemplate="let data of 'item'">
+               <div>{{data.fullname}}</div>
+           </div>
+       </dx-list>   
+    
+    </div>   
+   
+   
+      
+   
+   </app-portlet>

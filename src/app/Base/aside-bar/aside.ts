@@ -29,7 +29,8 @@ export class Aside
       'titre':'Etudiant',
       'active':false,
       'itemsid':[
-         8
+         8,
+         12
       ]
   },
    {
@@ -98,6 +99,13 @@ export class Aside
             id:11,
             titre:"Gestion matiere",
             link:"/dashboard/filiere/matiere/gestion",
+            plus:""
+        }
+        , 
+        {
+            id:12,
+            titre:"Chercher Etudiant",
+            link:"/dashboard/etudiant/chercher",
             plus:""
         }
     ]

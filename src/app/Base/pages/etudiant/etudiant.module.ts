@@ -4,29 +4,41 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EtudiantComponent } from './etudiant/etudiant.component';
-import { DxTabPanelModule,DxTreeViewModule,DxDataGridModule ,DxLoadPanelModule ,DxSelectBoxModule,
+import { DxTabPanelModule,
+        DxTreeViewModule,
+        DxDataGridModule ,
+        DxLoadPanelModule ,
+        DxSelectBoxModule,
         DxTextAreaModule,
         DxDateBoxModule,
+        DxTextBoxModule,
+        DxListModule,
+        DxRadioGroupModule,
         DxFormModule} from 'devextreme-angular';
 import { TABetudiantComponent } from './tabetudiant/tabetudiant.component';
+import { SearchetudiantComponent } from './searchetudiant/searchetudiant.component';
 
 export const EtudiantRouting : Routes = [
   {path:'gestion' , component:EtudiantComponent , children:[
     {path:':filierename/:filiereid' , component:TABetudiantComponent},
   ]},
-  {path:'profile/:etudiantid' , component:EtudprofileComponent} 
+  {path:'profile/:etudiantid' , component:EtudprofileComponent} ,
+  {path:'chercher' , component:SearchetudiantComponent} 
 ]
 @NgModule({
   declarations: [ 
     EtudiantComponent,
     TABetudiantComponent,
-    EtudprofileComponent
+    EtudprofileComponent,
+    SearchetudiantComponent
   ],
   imports: [
+    DxRadioGroupModule,
     DxLoadPanelModule,
     DxDataGridModule,
     SharedModuleModule,
-    
+    DxTextBoxModule,
+    DxListModule,
     DxTabPanelModule,
     DxTreeViewModule,
     DxSelectBoxModule,

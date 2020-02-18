@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { map, tap, filter} from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { throws } from 'assert';
 
@@ -85,6 +85,13 @@ export interface filiere{
 
    getetudiant(idetudiant){
      return this.http.get("http://127.0.0.1:8000/api/etudiantwithcompte/"+idetudiant)
+   }
+   searchetudiant(searchwith , searchvalue){
+    return this.http.get("http://127.0.0.1:8000/api/etudiant/search", 
+    {params: new HttpParams()
+            .set('keyword', searchvalue)
+            .set('column', searchwith)
+    })
    }
   }
 
