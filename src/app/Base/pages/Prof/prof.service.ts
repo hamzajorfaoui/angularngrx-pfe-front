@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -50,6 +50,10 @@ export class ProfService {
   }
   emailexistupdate(email , id:number){
     return this.http.get("http://127.0.0.1:8000/api/prof/profemail/"+id+"/"+email)
+  }
+  searchprof(fullname){
+    return this.http.get("http://127.0.0.1:8000/api/prof/search",
+    {params: new HttpParams().set('keyword', fullname)})
   }
 
 }

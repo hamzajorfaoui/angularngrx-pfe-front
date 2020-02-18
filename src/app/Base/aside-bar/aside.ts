@@ -1,17 +1,7 @@
 export class Aside
 {
     public static content = [
-     {
-         'id':1,
-         'icone':'fas fa-home',
-         'titre':'Dashbord',
-         'active':false,
-         'itemsid':[
-            1,
-            2,
-            3
-         ]
-     },
+    
      {
         'id':2,
         'icone':'fas fa-user-tie',
@@ -55,24 +45,6 @@ export class Aside
 
     ]
     public static items = [
-        {
-            id:1,
-            titre:"Manage admins",
-            link:"/base/admins",
-            plus:""
-        }, 
-        {
-            id:2,
-            titre:"Manage Uers",
-            link:"/base/admins",
-            plus:""
-        }, 
-        {
-            id:3,
-            titre:"Manage Orders",
-            link:"#",
-            plus:""
-        }, 
         {
             id:4,
             titre:"Chercher un Professeur",

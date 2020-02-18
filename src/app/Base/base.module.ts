@@ -8,18 +8,20 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { GestionprofsComponent } from './pages/Prof/gestionprofs/gestionprofs.component';
-import { DxDataGridModule, DxTemplateModule ,DxTreeViewModule} from 'devextreme-angular';
+import { DxDataGridModule, DxTemplateModule ,DxTreeViewModule , DxTextBoxModule , DxListModule} from 'devextreme-angular';
 import { DepartementComponent } from './pages/departement/departement/departement.component';
 import { FiliereComponent } from './pages/filiere/filiere.component';
 import {  EtudiantModule} from "./pages/etudiant/etudiant.module";
 import { MatiereComponent } from './pages/matiere/matiere/matiere.component';
 import { TabmatiereComponent } from './pages/matiere/tabmatiere/tabmatiere.component';
+import { SearchprofComponent } from './pages/Prof/searchprof/searchprof.component'; 
 
 export const BaseRouting : Routes = [
             {path:'' , component:DashboardComponent , 
   children:[
             {path:'' , component:HomepageComponent},
             {path:'prof/gestion' , component:GestionprofsComponent},
+            {path:'prof/chercher' , component:SearchprofComponent},
             {path:'departement/gestion' , component:DepartementComponent},
             {path:'filiere/gestion' , component:FiliereComponent},
             {path:'filiere/matiere/gestion' , component:MatiereComponent , children:[
@@ -33,10 +35,12 @@ export const BaseRouting : Routes = [
 
 @NgModule({
   imports: [
+    DxListModule,
     DxTreeViewModule,
     SharedModuleModule,
     DxTemplateModule, 
     DxDataGridModule,
+    DxTextBoxModule,
     CommonModule,
     EtudiantModule,
     ActualiteModule,
@@ -51,6 +55,7 @@ export const BaseRouting : Routes = [
     DepartementComponent,
     FiliereComponent,
     MatiereComponent,
-    TabmatiereComponent]
+    TabmatiereComponent,
+    SearchprofComponent]
 })
 export class BaseModule { }

@@ -78,7 +78,7 @@
         } 
 .icone{
     color: 	#a5d6a7;
-    flex-grow: 1;
+    width: 34px;
     order: 1;
 }     
 .title{
@@ -87,10 +87,11 @@
      //margin-left:15px;
      color: rgba(245, 245, 245, 0.87);
      order: 2;
-     flex-grow: 8;
+     width: 162px;
 }   
 .fleche{
-    flex-grow: 1;
+    width: 18px;
+    
     order: 3;
   .arrow{
     font-size: 10px;  

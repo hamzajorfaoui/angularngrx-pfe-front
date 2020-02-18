@@ -62,7 +62,7 @@ loginuser$:Observable<Action> = this.actions$.pipe(
             map(
                 (rep :User)=> new LoginActions.LOGINUSERSUCCES(rep)
             ),catchError(
-                err =>of(new LoginActions.LoginFail(err))
+                err =>of(new LoginActions.LOGOUT)
                 )
         )
     )

@@ -68,7 +68,10 @@ switch (action.type) {
                  ...state,
                   user:action.payload,
                   loading:false
-            }             
+            } 
+    case LoginActions.LoginActionTypes.LOG_OUT:
+
+            return defaultLogin;              
 
     default:
         return state;

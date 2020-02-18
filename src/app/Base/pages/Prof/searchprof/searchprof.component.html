@@ -1,0 +1,39 @@
+<app-portlet title="Chercher Un Professeur">
+
+ <div class="tableau">
+    <dx-text-box placeholder="Enter full name here..." 
+                 mode="search" 
+                 [height]="50"
+                 valueChangeEvent="keyup"
+                 (onValueChanged)="onValueChanged($event)"></dx-text-box>
+
+    <dx-list 
+    #list
+    noDataText="Not found !!"
+    [dataSource]="Professeurs"
+    [height]="400"
+    keyExpr="id"
+    (onItemClick) = "onclicklist($event)"
+    [searchEnabled]="false">
+        <!-- <dxo-search-editor-options
+        [onOptionChanged]="logOption">
+    </dxo-search-editor-options> -->
+        <div *dxTemplate="let data of 'item'">
+            <div>{{data.fullname}}</div>
+        </div>
+    </dx-list>   
+  <div>
+     <h6>Excel file</h6>
+     <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="excelfile" accept=".xlsx, .xls, .csv" (change)="previewfile(this)">
+          <label class="custom-file-label" for="excelfile" >Choose file</label>
+        </div>
+      </div>
+ </div>   
+ </div>   
+
+
+   
+
+</app-portlet>

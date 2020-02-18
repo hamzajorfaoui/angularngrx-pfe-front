@@ -4,6 +4,14 @@
      <h4 class="titre">LOGO</h4>
      </div>
      <div class="items">
+        <div class="list-group">
+        <a class="oneitem" class="oneitem" style="height: 39px;" [routerLink]="['/dashboard']">
+            <span class="icone" ><i class="fas fa-home"></i></span>
+            <span class="title" >Page d'acceuil </span>
+            <!-- <span class="fleche" *ngIf="!content.active"><i class="arrow fas fa-chevron-right"></i></span> 
+            <span class="fleche" *ngIf="content.active"><i class="arrow fas fa-chevron-down"></i></span>  -->
+        </a>
+        </div>
        <div  *ngFor='let content of this.Contents ; index as i'>  
         <div class="list-group">
              <a class="oneitem" [ngClass]="{'active': content.active, 'oneitem': !content.active}"  data-toggle="collapse" (click)="togllecolapse(content.titre , i)"  role="button" aria-expanded="false" aria-controls="collapseExample">
