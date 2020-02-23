@@ -5,11 +5,11 @@
      <a (click)="goback()" class="retour"><i class="fas fa-arrow-left"></i><span class="retorspan"> Retour</span></a>
 	</div>
 	<div class="tableau" *ngIf="etudiant">
-		<div class="p-3 mb-2 bg-info text-white" *ngIf="!etudiant.compte">
+		<div class="p-3 mb-2 bg-info text-white" *ngIf="!etudiant.user.email_verified_at">
 			cet etudiant n'as pas encore créer un compte !!
 		</div>
-		<dx-form id="form"
-		[formData]="etudiant">
+	<dx-form id="form"
+			 [formData]="etudiant">
 		<dxi-item itemType="group" cssClass="first-group" [colCount]="4">
 			<dxi-item>
 				<div class="form-avatar"></div>
@@ -27,10 +27,12 @@
             [buttonOptions]="buttonOptions">
         </dxi-item>
 	</dx-form>
-	<dx-form *ngIf="etudiant.compte">
+	<dx-form 
+	*ngIf="etudiant.user.email_verified_at"
+	[formData]="etudiant.user">
 		<dxi-item itemType="group" cssClass="second-group" [colCount]="2" >
 			<dxi-item itemType="group">
-				<dxi-item dataField="Address"></dxi-item>
+				<dxi-item dataField="email"></dxi-item>
 				<dxi-item dataField="City"></dxi-item>
 				<dxi-item dataField="Position" editorType="dxSelectBox" [editorOptions]="{ items: positions, value: '' }"></dxi-item>
 			</dxi-item>

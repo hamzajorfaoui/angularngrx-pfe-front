@@ -12,7 +12,7 @@ export interface departement {
   selected?: boolean;
 }
 export interface filiere{
-  id:number;
+  id:String;
   text:String;
   departement_id: number;
   selected?: boolean;
@@ -32,7 +32,8 @@ export interface filiere{
                 .filter((data:departement)=>data.expanded = true)
                 .filter((data:departement)=>data.text = data['name'])
                 .filter((data:departement)=>data.items=data['filiere'])
-                .filter((data:departement)=> data.items.filter((fil:filiere)=>fil.text = fil["name"])) 
+                .filter((data:departement)=> data.items.filter((fil:filiere)=>fil.text = fil["name"]))
+                .filter((data:departement)=> data.items.filter((fil:filiere)=>fil.id = fil['id']+"-")) 
             }),
                )
                 

@@ -23,7 +23,7 @@ export class MatiereComponent implements OnInit {
       if(this.activroute.firstChild){
         this.deptfilieres.forEach(element => {
           element['items'].forEach(element => {
-            if(element.id == this.activroute.firstChild.snapshot.params['filiereid']){
+            if(element.id == this.activroute.firstChild.snapshot.params['filiereid']+"-"){
                 element.selected = true;
             }
           });
@@ -53,7 +53,7 @@ export class MatiereComponent implements OnInit {
       // console.log(e.itemData.id)
       // this.selectedfiliereid =e.itemData.id;
       // this.selectedfilieretitle=e.itemData.text;
-      this.route.navigate(['/dashboard/filiere/matiere/gestion/'+e.itemData.text+'/'+e.itemData.id])
+      this.route.navigate(['/dashboard/filiere/matiere/gestion/'+e.itemData.text+'/'+parseInt(e.itemData.id)])
     }
     }
    

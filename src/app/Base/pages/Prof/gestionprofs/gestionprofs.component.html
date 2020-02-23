@@ -23,8 +23,8 @@
                 <dxo-popup
                     title="Information de Professeur"
                     [showTitle]="true"
-                    [width]="400"
-                    [height]="305"
+                    [width]="500"
+                    [height]="505"
                     [position]="{ my: 'center', at: 'center', of: window }">
                 </dxo-popup>
                 <dxo-form> 
@@ -37,14 +37,30 @@
                             <dxi-validation-rule type="async" message="Email is already registered" [validationCallback]="asyncValidation" *ngIf="itemVisible"></dxi-validation-rule>
                             <dxi-validation-rule type="async" message="Email is already registered" [validationCallback]="asyncValidationupdate" *ngIf="!itemVisible"></dxi-validation-rule>
                         </dxi-item>
+                        <dxi-item dataField="phone" 
+                        [editorOptions]="{ mask: '+212 (00) 00-00-00-00', maskRules: phoneRules }" 
+                        [colSpan]="2">
+                            <dxi-validation-rule type="required"></dxi-validation-rule>
+                        </dxi-item>
+                        <dxi-item dataField="departement_id"  [colSpan]="2">
+                            <dxi-validation-rule type="required" message="required"></dxi-validation-rule>
+                        </dxi-item>
                 </dxo-form>
             </dxo-editing>
             <dxo-filter-row [visible]="true"></dxo-filter-row>
             <dxi-column dataField="id" caption="Id" [width]="70"></dxi-column>
             <dxi-column dataField="fullname"></dxi-column>
             <dxi-column dataField="email"></dxi-column>
+            <dxi-column dataField="phone"></dxi-column>
             <dxi-column dataField="created_at"></dxi-column>
             <dxi-column dataField="updated_at"></dxi-column>
+            <dxi-column dataField="departement_id">
+            <dxo-lookup
+                [dataSource]="departements"
+                displayExpr="name"
+                valueExpr="id">
+            </dxo-lookup>
+            </dxi-column>
         </dx-data-grid>
     </div>
  </div>

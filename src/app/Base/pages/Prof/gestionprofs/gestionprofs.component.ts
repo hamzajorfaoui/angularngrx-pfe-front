@@ -1,3 +1,4 @@
+import { DepartementService } from './../../departement/departement.service';
 import { ProfService, Prof } from './../prof.service';
 import { Component, OnInit } from '@angular/core';
 import CustomStore from 'devextreme/data/custom_store';
@@ -9,10 +10,10 @@ import CustomStore from 'devextreme/data/custom_store';
 })
 
 export class GestionprofsComponent implements OnInit {
-
-  constructor(private profS:ProfService) {
-    // this.refreshMode = "reshape";
-    // this.refreshModes = ["full", "reshape", "repaint"];
+  
+  departements; 
+  constructor(private profS:ProfService , private deptS:DepartementService) {
+    this.deptS.getdepartements().then(data=>{this.departements = data;});
     this.dataSource = new CustomStore({
       key: "id",
       load: () => this.profS.getprofs(),
@@ -65,6 +66,9 @@ onInitNewRow(e: any) {
 onEditingStart(e: any) {  
     this.idupdate = e.key;
     this.itemVisible = false;  
+}
+phoneRules: any = {
+  X: /[02-9]/
 }
 
 }

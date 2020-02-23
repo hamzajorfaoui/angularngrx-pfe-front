@@ -15,7 +15,8 @@ export class EtudprofileComponent implements OnInit {
   ngOnInit() {
     this.etudeS.getetudiant(this.activeR.snapshot.params['etudiantid']).subscribe(
       (data)=>{
-        this.etudiant = data['data'];
+        console.log(data)
+        this.etudiant = data;
         this.loading = false;
       }
     )

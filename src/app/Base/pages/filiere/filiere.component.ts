@@ -10,7 +10,7 @@ import CustomStore from 'devextreme/data/custom_store';
 })
 export class FiliereComponent implements OnInit {
   dataSource;
-  departements;
+  departements; 
   constructor(private filiereS:FiliereService , private deptS:DepartementService) { 
   this.deptS.getdepartements().then(data=>{this.departements = data;})
     this.dataSource = new CustomStore({
