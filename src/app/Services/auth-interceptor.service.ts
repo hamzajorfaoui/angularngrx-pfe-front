@@ -9,9 +9,10 @@ export class AuthInterceptorService implements HttpInterceptor{
   constructor() { }
   intercept(req: HttpRequest<any> , next: HttpHandler  ){
     if (localStorage.token) {
+      // console.log(req.headers);
       const modifiereq = req.clone({
         setHeaders: {
-            'Content-Type':  'application/json',
+            // 'Content-Type':  'application/json',
             Authorization: `bearer ${localStorage.getItem('token')}`
           },
         

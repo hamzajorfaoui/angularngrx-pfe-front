@@ -8,6 +8,9 @@
 		<div class="p-3 mb-2 bg-info text-white" *ngIf="!etudiant.user.email_verified_at">
 			cet etudiant n'as pas encore créer un compte !!
 		</div>
+		<div class="p-3 mb-2 bg-info text-white" *ngIf="etudiant.user.email_verified_at">
+			cet etudiant a créer son compte !!
+		</div>
 	<dx-form id="form"
 			 [formData]="etudiant">
 		<dxi-item itemType="group" cssClass="first-group" [colCount]="4">
@@ -30,16 +33,9 @@
 	<dx-form 
 	*ngIf="etudiant.user.email_verified_at"
 	[formData]="etudiant.user">
-		<dxi-item itemType="group" cssClass="second-group" [colCount]="2" >
+		<dxi-item itemType="group" cssClass="second-group" [colCount]="1" >
 			<dxi-item itemType="group">
 				<dxi-item dataField="email"></dxi-item>
-				<dxi-item dataField="City"></dxi-item>
-				<dxi-item dataField="Position" editorType="dxSelectBox" [editorOptions]="{ items: positions, value: '' }"></dxi-item>
-			</dxi-item>
-			<dxi-item itemType="group">
-				<dxi-item dataField="State" editorType="dxSelectBox" [editorOptions]="{ items: states }"></dxi-item>
-				<dxi-item dataField="ZipCode"></dxi-item>
-				<dxi-item dataField="Mobile" [label]="{text: 'Phone'}" [editorOptions]="{ mask: '+1 (000) 000-0000'}"></dxi-item>
 			</dxi-item>
 			<!-- <dxi-item dataField="Notes" [colSpan]="2" editorType="dxTextArea" [editorOptions]="{ height: 140 }"></dxi-item> -->
 		</dxi-item>

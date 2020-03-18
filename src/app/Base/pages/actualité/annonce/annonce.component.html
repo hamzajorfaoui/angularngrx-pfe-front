@@ -15,7 +15,7 @@
                     </dxi-validation-rule> 
                 </dxi-item>
                 <dxi-item dataField="contenu" editorType="dxTextArea" 
-                [editorOptions]="{height:'90'}" >
+                [editorOptions]="{height:'90'}" > 
                     <dxi-validation-rule 
                             type="required">
                     </dxi-validation-rule> 
@@ -24,13 +24,13 @@
                 <dxi-item name="show-order" dataField="filieres">
                     <dxo-label text="Choisissez les filieres :" ></dxo-label>
                     <div *dxTemplate  >
-                     <div *ngFor="let dept of dataSource"  style="display: inline-block;">
+                     <div *ngFor="let dept of dataSource.dept"  style="display: inline-block;">
                         <h6>{{dept.text}} :</h6>
 
                         <dx-list
                         *ngIf="dept.selectedItems"
                         [items]="dept.filiere"
-                        [height]="180"
+                        
                         [width]="200"
                         [itemDeleteMode]="deleteType"
                         [showSelectionControls]="true"
@@ -44,6 +44,48 @@
                      </div>   
                    </div>
                 </dxi-item>
+
+                <dxi-item dataField="image"  
+                          editorType="dxFileUploader" 
+                          [editorOptions]="{selectButtonText:'Select photo', accept:'image/*' , uploadMode:'useButton',multiple:false , onValueChanged:this.previewFile , value:this.dataSource.image}">
+                    <dxo-label
+                    text="Principale image"> <!-- or "left" | "center" -->
+                   </dxo-label>
+                </dxi-item>
+
+                <dxi-item>
+                    <div class="col-12" style="text-align: center;">
+                        <div  class="border-image">
+                        <img   *ngIf="imageprincipale" src={{imageprincipale}} width={{imagewidth}} height={{imageheight}} style="margin-top: 25px;">
+                        </div>
+                    </div>
+                </dxi-item>
+
+                <dxi-item dataField="OtherImages"
+                          editorType="dxFileUploader" 
+                          [editorOptions]="{selectButtonText:'Select photo', accept:'image/*' , uploadMode:'useButton',multiple:true , onValueChanged:this.previewFiles , value:this.dataSource.OtherImages }">
+                    <dxo-label
+                    text="Autres image"> 
+                   </dxo-label>
+                </dxi-item>
+
+                <dxi-item>
+                    <div class="col-12" style="text-align: center; justify-content: center;">
+                        <div  class="border-image">
+                        <dx-gallery 
+                        #gallery
+                        id="gallery"
+                        [dataSource]="OtherImages"
+                        [height]="300"
+                        [slideshowDelay]="slideshowDelay"
+                        [loop]="false"
+                        [showNavButtons]="true"
+                        [showIndicator]="false"
+                    ></dx-gallery>    
+                        </div>
+                    </div>
+                </dxi-item>
+                
                    <dxi-item 
                    *ngIf="!loading"
                     id="buttonsubmit"
@@ -80,25 +122,21 @@
                 <dxi-column dataField="contenu"   ></dxi-column>
                 <dxi-column dataField="created_at" [width]="130"></dxi-column>
                 <dxi-column dataField="updated_at" [width]="130" ></dxi-column>
-                <!-- <dxi-column dataField="created_at" [width]="130"></dxi-column>
-                <dxi-column dataField="updated_at" [width]="130"></dxi-column> -->
-                <!-- <dxi-column dataField="id" [width]="100" [allowFiltering]="false"
-                [allowSorting]="false" cellTemplate="cellTemplate" caption="Profile"></dxi-column>
-                <div *dxTemplate="let data of 'cellTemplate'" class="profile">
-                    <a [routerLink]="['/dashboard/etudiant/profile',data.value]" ><i class="grrr far fa-id-card">{{data.id}}</i></a>
-                </div> -->
+
                 <dxo-editing 
                             mode="popup"
                             [refreshMode]="full"
                             [allowDeleting]="true"
                             [allowUpdating]="true">
-                            <dxo-popup
+                            
+                        <dxo-popup
                             title="Information d'actualité"
                             [showTitle]="true"
                             [width]="400"
                             [height]="360"
                             [position]="{ my: 'center', at: 'center', of: window }">
                         </dxo-popup>
+
                         <dxo-form> 
                             <dxi-item dataField="title"  [colSpan]="2">
                                 <dxi-validation-rule type="required"></dxi-validation-rule>
@@ -108,12 +146,9 @@
                                 <dxi-validation-rule type="required"></dxi-validation-rule>
                                </dxi-item>      
                         </dxo-form>
-                        
-                        
-                        </dxo-editing>
-                        <!-- <div *dxTemplate="let data of dataSource">
-                            <span class="dx-icon-home icon"></span> {{data.cne}} 
-                          </div> -->
+
+                </dxo-editing>
+
             </dx-data-grid>
             </div>
         </div>

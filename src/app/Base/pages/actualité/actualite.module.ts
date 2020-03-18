@@ -2,7 +2,7 @@ import { SharedModuleModule } from './../../material/shared-module.module';
 import { DxTreeViewModule, DxTabPanelModule ,DxSelectBoxModule,
   DxTextAreaModule,DxListModule,
   DxDateBoxModule,
-  DxFormModule,DxDataGridModule, DxCheckBoxModule } from 'devextreme-angular';
+  DxFormModule,DxDataGridModule, DxCheckBoxModule , DxGalleryModule } from 'devextreme-angular';
 import { RouterModule , Routes} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,6 +23,7 @@ export const actualiteRouting : Routes = [
     AnnonceComponent
   ],
   imports: [
+    DxGalleryModule,
     DxTabPanelModule,
     DxSelectBoxModule,
     DxTextAreaModule,

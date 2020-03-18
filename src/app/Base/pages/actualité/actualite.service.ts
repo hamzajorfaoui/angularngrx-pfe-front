@@ -1,5 +1,5 @@
 import { map, filter, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -55,12 +55,31 @@ export class ActualiteService {
            })
   }
 
-  addactualite(titre , content , idF){
-   return this.http.post("http://127.0.0.1:8000/api/actualite",{
-     "title":titre,
-     "contenu":content,
-     "filiers_id":idF
-   })
+  addactualite(titre , content , idF , Principaleimage ,OTherimages){
+    const formData = new FormData();
+    formData.append('title', titre);
+    formData.append('contenu', content);
+    var i =0;
+    for (const id of idF) {
+      formData.append('filiers_id['+i+']', id);
+      i++;
+    }
+    var j =0;
+    for (const image of OTherimages) {
+      formData.append('image_act['+j+']', image);
+      j++;
+      console.log(j);
+    }
+    formData.append('req_image', Principaleimage);
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        // 'Content-Type':'multipart/form-data',
+        'Accept': 'application/json'
+      })
+    };
+
+   return this.http.post("http://127.0.0.1:8000/api/actualite", formData , httpOptions);
   }
   getactualites(){
     return this.http.get("http://127.0.0.1:8000/api/actualite")
