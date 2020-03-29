@@ -1,8 +1,9 @@
-.full{
-height:46px;
-}
+
 .navbar{
     z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    height: 56px;
 }
 .icone{
     
@@ -13,6 +14,7 @@ height:46px;
    
 }
 .icones{
+    float: right;
     max-width: 200px;
 }
 // .shadow {

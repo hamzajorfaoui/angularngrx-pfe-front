@@ -21,6 +21,19 @@ export class FiliereComponent implements OnInit {
       // remove: (key) => this.profS.deleteprof(key)
   });
   }
+  niveaux = [
+  {
+    text:"1er année",
+    value:1
+  },
+  {
+    text:"2em année",
+    value:2
+  },
+  {
+    text:"3em année",
+    value:3
+  }]
 
   ngOnInit() {
   }

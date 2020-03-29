@@ -40,6 +40,17 @@
 			<!-- <dxi-item dataField="Notes" [colSpan]="2" editorType="dxTextArea" [editorOptions]="{ height: 140 }"></dxi-item> -->
 		</dxi-item>
 	</dx-form>
+	<dx-form 
+	*ngIf="!etudiant.user.email_verified_at"
+	[formData]="etudiant.user">
+		<dxi-item itemType="group" cssClass="second-group" [colCount]="1" >
+			<dxi-item itemType="group">
+				<dxi-item dataField="email"></dxi-item>
+				<!-- <dxi-item dataField="passwoard"></dxi-item> -->
+			</dxi-item>
+			<!-- <dxi-item dataField="Notes" [colSpan]="2" editorType="dxTextArea" [editorOptions]="{ height: 140 }"></dxi-item> -->
+		</dxi-item>
+	</dx-form>
 	</div>
 		
 </app-portlet>

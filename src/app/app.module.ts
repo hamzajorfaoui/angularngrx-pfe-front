@@ -21,7 +21,7 @@ import { BaseModule } from './Base/base.module';
     LoginModule,
     BrowserModule,
     AppRoutingModule,
-    BaseModule,
+    BaseModule, 
     
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),

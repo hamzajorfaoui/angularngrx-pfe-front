@@ -1,5 +1,4 @@
 
-
 <app-portlet title="Gestion des Actualité">
 
 
@@ -54,9 +53,20 @@
                 </dxi-item>
 
                 <dxi-item>
-                    <div class="col-12" style="text-align: center;">
-                        <div  class="border-image">
-                        <img   *ngIf="imageprincipale" src={{imageprincipale}} width={{imagewidth}} height={{imageheight}} style="margin-top: 25px;">
+                    <div class="col-12" style="text-align: center;" *dxTemplate>
+                        <div  class="border-image" *ngIf="imageprincipale.length > 0">
+                        <!-- <img   src={{imageprincipale}}  class="object-fit_none"> -->
+                        <dx-gallery 
+                        #gallery
+                        id="gallery"
+                        [dataSource]="imageprincipale"
+                        [height]="340"
+                        [slideshowDelay]="slideshowDelay"
+                        [loop]="false"
+                        [showNavButtons]="false"
+                        [showIndicator]="false"
+                        [swipeEnabled]="false"
+                        ></dx-gallery> 
                         </div>
                     </div>
                 </dxi-item>
@@ -69,14 +79,14 @@
                    </dxo-label>
                 </dxi-item>
 
-                <dxi-item>
-                    <div class="col-12" style="text-align: center; justify-content: center;">
-                        <div  class="border-image">
+                <dxi-item >
+                    <div class="col-12" style="text-align: center; justify-content: center;"  *dxTemplate>
+                        <div  class="border-image" *ngIf="OtherImages.length > 0">
                         <dx-gallery 
                         #gallery
                         id="gallery"
                         [dataSource]="OtherImages"
-                        [height]="300"
+                        [height]="340"
                         [slideshowDelay]="slideshowDelay"
                         [loop]="false"
                         [showNavButtons]="true"

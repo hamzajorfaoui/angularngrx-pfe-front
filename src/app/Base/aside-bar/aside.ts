@@ -20,7 +20,9 @@ export class Aside
        'itemsid':[
           6,
           7,
-          11
+          11,
+          13,
+          14
        ]
    },
    {
@@ -106,6 +108,20 @@ export class Aside
             id:12,
             titre:"Chercher Etudiant",
             link:"/dashboard/etudiant/chercher",
+            plus:""
+        }
+        , 
+        {
+            id:13,
+            titre:"Emploi du Temps",
+            link:"/dashboard/emploi/emploidutemps",
+            plus:""
+        }
+        , 
+        {
+            id:14,
+            titre:"Emploi des Examens",
+            link:"/dashboard/emploi/emploiexamens",
             plus:""
         }
     ]

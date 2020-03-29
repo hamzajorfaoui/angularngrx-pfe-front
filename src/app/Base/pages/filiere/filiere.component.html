@@ -5,23 +5,29 @@
     id="gridContainer" 
     [dataSource]="dataSource"
     keyExpr="id"
+    [columnAutoWidth]="true"
     [showBorders]="true">
 
     <dxo-selection mode="single"></dxo-selection>
-
-    <dxi-column dataField="id" [width]="130" caption="Identifiant"></dxi-column>
-    <dxi-column dataField="name" [width]="120" ></dxi-column>
-    <dxi-column dataField="deptname.name" [groupIndex]="0" caption="Departement">
+    <dxi-column dataField="deptname.name" [groupIndex]="0" caption="Departement"></dxi-column>
+    <dxi-column dataField="id"  caption="Id"></dxi-column>
+    <dxi-column dataField="name"  ></dxi-column>
+    <dxi-column dataField="niveau" [visible]="true">
+        <dxo-lookup
+        [dataSource]="niveaux"
+        displayExpr="text"
+        valueExpr="value">
+    </dxo-lookup>
     </dxi-column>
-    <dxi-column dataField="departement_id" [visible]="false">
+    <dxi-column dataField="departement_id" caption="Departement" [visible]="false">
         <dxo-lookup
         [dataSource]="departements"
         displayExpr="name"
         valueExpr="id">
     </dxo-lookup>
     </dxi-column>
-    <dxi-column dataField="created_at" ></dxi-column>
-    <dxi-column dataField="updated_at"></dxi-column>
+    <dxi-column dataField="created_at" [hidingPriority]="1" ></dxi-column>
+    <dxi-column dataField="updated_at" [hidingPriority]="0"></dxi-column>
     <dxo-editing 
                 mode="popup"
                 [refreshMode]="full"
@@ -32,12 +38,15 @@
                 title="Information de Professeur"
                 [showTitle]="true"
                 [width]="400"
-                [height]="305"
+                [height]="405"
                 [position]="{ my: 'center', at: 'center', of: window }">
             </dxo-popup>
             <dxo-form> 
-                 <dxi-item dataField="name"  [colSpan]="2">
+                 <dxi-item dataField="name"  [colSpan]="2" >
                      <dxi-validation-rule type="required"></dxi-validation-rule>
+                    </dxi-item>
+                    <dxi-item dataField="niveau"  [colSpan]="2">
+                        <dxi-validation-rule type="required" message="required"></dxi-validation-rule>
                     </dxi-item>
                     <dxi-item dataField="departement_id"  [colSpan]="2">
                         <dxi-validation-rule type="required" message="required"></dxi-validation-rule>

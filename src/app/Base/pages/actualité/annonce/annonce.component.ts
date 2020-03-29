@@ -1,4 +1,4 @@
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxGalleryComponent } from 'devextreme-angular';
 import  CustomStore  from 'devextreme/data/custom_store';
 import { ActualiteService } from './../actualite.service';
 import { map } from 'rxjs/operators';
@@ -61,96 +61,97 @@ export class AnnonceComponent implements OnInit  {
   dataSource :actualite;
   idfiliereS : any[] = [];
   @ViewChild('targetDataGrid', { static: false }) dataGrid: DxDataGridComponent;
-  value: any[] = [];
-onFormSubmit = (e) => {  
-  this.idfiliereS= [];
-
-  new Promise(
-    (resolve, reject) =>{
-
-    for (const SI of this.dataSource.dept[0].selectedItems) {
-      this.idfiliereS.push(SI.id);
-    }
-     
   
-resolve();
-})
-  .then(
-    ()=>{
+  value: any[] = [];
+  onFormSubmit = (e) => {  
+    this.idfiliereS= [];
 
-  if(this.idfiliereS.length > 0){
+    new Promise(
+      (resolve, reject) =>{
 
-  this.ACS.addactualite(this.dataSource.title , this.dataSource.contenu , this.idfiliereS , this.imageprincipaleFile , this.OtherImagesFile)
-            .subscribe(
-            data=>{
-            this.dataGrid.instance.refresh();       
-            this.dataSource.title = undefined;
-            this.dataSource.contenu = undefined;
-            this.dataSource.dept[0].selectedItems = [];
-            this.dataSource.OtherImages = [];
-            this.dataSource.image = [];
-            this.imageprincipale = null;
-            this.imageprincipaleFile = null;
-            this.OtherImages = [];
-            },(e)=>{console.log(e)})
-            
+      for (const SI of this.dataSource.dept[0].selectedItems) {
+        this.idfiliereS.push(SI.id);
+      }
+      
+    
+  resolve();
+  })
+    .then(
+      ()=>{
 
-  }else{
+    if(this.idfiliereS.length > 0){
 
+    this.ACS.addactualite(this.dataSource.title , this.dataSource.contenu , this.idfiliereS , this.imageprincipaleFile , this.OtherImagesFile)
+              .subscribe(
+              data=>{
+              this.dataGrid.instance.refresh();       
+              this.dataSource.title = undefined;
+              this.dataSource.contenu = undefined;
+              this.dataSource.dept[0].selectedItems = [];
+              this.dataSource.OtherImages = [];
+              this.dataSource.image = [];
+              this.imageprincipale = null;
+              this.imageprincipaleFile = null;
+              this.OtherImages = [];
+              },(e)=>{console.log(e)})
+    }else{
 
-  }
+    }
     })
-   e.preventDefault();
- }
- imageprincipale :any = null;
- imageprincipaleFile = null;
- imagewidth;
- imageheight;
-   previewFile = ()=> {
+    e.preventDefault();
+  }
 
- if(this.dataSource){
-    if(this.dataSource.hasOwnProperty('image') ){
-        if(this.dataSource.image.length > 0){
-        this.imageprincipaleFile = this.dataSource.image[0];
-         var file    = <File>this.dataSource.image[0];
-         var reader  = new FileReader();
+    imageprincipale :any[] = [];
+    imageprincipaleFile = null;
+    imagewidth;
+    imageheight;
+    previewFile = ()=> {
 
-        reader.addEventListener("load",  () => {
-          var image = new Image();
-          image.src = String(reader.result);
-          image.onload = () =>{
-          this.imageprincipale = reader.result;
-            if(image.width > 300){
-              this.imagewidth = 300;
-            }else{
-              this.imagewidth = image.width;
+    if(this.dataSource){
+        if(this.dataSource.hasOwnProperty('image') ){
+            if(this.dataSource.image.length > 0){
+
+            this.imageprincipale=[];
+            this.imageprincipaleFile = this.dataSource.image[0];
+            var file    = <File>this.dataSource.image[0];
+            var reader  = new FileReader();
+
+            reader.addEventListener("load",  () => {
+              
+              var image = new Image();
+              image.src = String(reader.result);
+              image.onload = () =>{
+                this.imageprincipale.push(reader.result);
+                if(image.width > 300){
+                  this.imagewidth = 300;
+                }else{
+                  this.imagewidth = image.width;
+                }
+
+                if(image.height > 340){
+                  this.imageheight = 340;
+                }else{
+                  this.imageheight = image.height;
+                }
+            };
+            }, false);
+
+            if (file) {
+              reader.readAsDataURL(file);
             }
-
-            if(image.height > 250){
-              this.imageheight = 250;
             }else{
-              this.imageheight = image.height;
+              this.imageprincipale = [];
+              this.imageprincipaleFile = null;
             }
-        };
-        }, false);
+      
+            }else{
 
-        if (file) {
-          reader.readAsDataURL(file);
-        }
-        }else{
-          this.imageprincipale = null;
-          this.imageprincipaleFile = null;
-        }
-   
-        }else{
+            }
+    }
+    }
 
-        }
- }
- 
-}
 OtherImages :any[] = [];
 OtherImagesFile :any[] = [];
-
 previewFiles =async ()=>{
   if(this.dataSource){
     if(this.dataSource.hasOwnProperty('OtherImages') ){
@@ -162,15 +163,10 @@ previewFiles =async ()=>{
          var readAndPreview = (file)  => {
          var reader  = new FileReader();
         reader.onloadend =() => {
-          // var image = new Image();
-          // image.src = String(reader.result);
           this.OtherImages.push(reader.result);  
-        //   image.onload = () =>{
-        //   this.OtherImages.push(reader.result);  
-        // };
         }
         reader.readAsDataURL(file);
-      }
+        }
         if (files) {
           [].forEach.call(files,  readAndPreview);
         }

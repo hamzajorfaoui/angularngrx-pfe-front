@@ -1,0 +1,68 @@
+    
+<app-portlet title="Emploi du temps">
+<div class="tableau">
+    <h6 style="color:#348f6cec;">Ajouter Un Emploi du temps :</h6>
+    <form  (submit)="onFormSubmit($event)">
+        <dx-form id="form"
+            [formData]="dataSource">
+        
+            <dxi-item dataField="FiliereId" editorType="dxSelectBox" #selectBox [editorOptions]="{ dataSource: Filieres, displayExpr:'name',searchEnabled: true, valueExpr:'id' , onSelectionChanged:this.changefiliere }">
+                <dxi-validation-rule 
+                        type="required">
+                </dxi-validation-rule> 
+            </dxi-item>
+            <dxi-item dataField="SemestreId" 
+            [editorOptions]="{readOnly:true , value:this.semestre.value}" > 
+                <dxi-validation-rule 
+                        type="required">
+                </dxi-validation-rule> 
+            </dxi-item>
+
+            
+            <dxi-item dataField="emploiImage"
+                      editorType="dxFileUploader" 
+                      [editorOptions]="{selectButtonText:'Select photo', accept:'image/*' , uploadMode:'useForm',multiple:false , onValueChanged:this.previewFiles}">
+              <dxi-validation-rule type="required"></dxi-validation-rule> 
+              <dxo-label
+                text="Emploi du temps"> 
+               </dxo-label>
+            </dxi-item>
+
+            <dxi-item *ngIf="OtherImages.length > 0">
+                <div class="col-12" >
+                    <div  class="border-image">
+                    <dx-gallery 
+                    #gallery
+                    id="gallery"
+                    [dataSource]="OtherImages"
+                    [height]="340"
+                    [slideshowDelay]="slideshowDelay"
+                    [loop]="false"
+                    [showNavButtons]="false"
+                    [showIndicator]="false"
+                    [swipeEnabled]="false"
+                    ></dx-gallery>    
+                    </div>
+                </div>
+            </dxi-item>
+            
+               <dxi-item 
+               *ngIf="!loading"
+                id="buttonsubmit"
+                caption="Update"
+                itemType="button"
+                horizontalAlignment="right"
+                [buttonOptions]="buttonOptions">
+                </dxi-item> 
+                
+        </dx-form>
+        <div *ngIf="loading" style="width: 100%;height:30px;">
+          <div class="spinner-border text-success" role="status" style="float: right;">
+            <span class="sr-only">Loading...</span>
+        </div>  
+        </div>
+        
+        </form>
+
+</div>
+</app-portlet>

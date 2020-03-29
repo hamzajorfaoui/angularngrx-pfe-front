@@ -20,7 +20,7 @@ export class FiliereService {
   }
   addfiliere(values){
     console.log(values)
-    return this.http.post("http://127.0.0.1:8000/api/filiere" , {"name":values.name,"dept_id":values.departement_id})
+    return this.http.post("http://127.0.0.1:8000/api/filiere" , {"name":values.name,"dept_id":values.departement_id , "niveau":values.niveau})
     .toPromise()
     .then((data: any) => {
         return  data; 
