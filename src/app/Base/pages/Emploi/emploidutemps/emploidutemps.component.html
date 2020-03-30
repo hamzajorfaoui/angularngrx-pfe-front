@@ -61,8 +61,29 @@
             <span class="sr-only">Loading...</span>
         </div>  
         </div>
+    </form>
+    <div class="data">
+
+        <dx-data-grid 
+        #targetDataGrid
+        id="gridContainer" 
+        [dataSource]="emploidutemps" 
+        [showBorders]="true"
+        keyExpr="id">
+            <dxi-column dataField="temp" [width]="150" [allowFiltering]="false"
+                [allowSorting]="false" cellTemplate="cellTemplate"></dxi-column>
+            <dxi-column dataField="filiere_id"  caption="Filiere" [width]="70"></dxi-column>
+            <dxi-column dataField="semester_id"  caption="Semestre" [width]="80"></dxi-column>
+            <dxi-column dataField="created_at"  dataType="datetime"format="M/d/yyyy, HH:mm"></dxi-column>
+            <dxi-column dataField="updated_at"   dataType="datetime"format="M/d/yyyy, HH:mm"></dxi-column>
         
-        </form>
+            <div *dxTemplate="let data of 'cellTemplate'">
+                <img src="http://localhost/blog/public/images/903851.jpg" alt=""  height="50"/>
+                <!-- <h1>data.value</h1> -->
+            </div>
+        </dx-data-grid>
+
+    </div>
 
 </div>
 </app-portlet>

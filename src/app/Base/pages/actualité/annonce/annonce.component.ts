@@ -30,6 +30,7 @@ export class AnnonceComponent implements OnInit  {
       title:"",
       dept:[]
     }
+
   }
 
   Actualites;
@@ -181,6 +182,7 @@ previewFiles =async ()=>{
  }
 
 }
+
 
 
 }

@@ -11,6 +11,11 @@
     keyExpr="id"
     [showBorders]="true">
 
+    <dxo-search-panel 
+    [visible]="true" 
+    [width]="240" 
+    placeholder="Search..."></dxo-search-panel>
+    
     <dxo-selection mode="single"></dxo-selection>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxi-column dataField="id"  caption="Identifiant"></dxi-column>

@@ -1,30 +1,27 @@
 ::ng-deep .containe {
     position: relative;
+    display: flex; 
 }
 
-::ng-deep .containe, .left-content {
-    min-height: 550px;
+::ng-deep .dx-treeview {
+    width: 160px !important;
+    height: 100%;
 }
-
-::ng-deep .left-content {
-    margin-top: 20px;
+::ng-deep .left-content { 
     color: #025c59;
     display: inline-block;
     width: 180px;
     padding: 0 10px 10px;
-    background-color: #f3f3f3;
-    box-shadow: -5px 0px 14px -8px rgba(0, 0, 0, 0.25) inset;
+    background-color: #ffffff;
+    border-right: 0.5px solid #c5dfd5;
+    min-height: 550px;
 }
 
 ::ng-deep .right-content {
-    margin-top: 20px;
+    display: table-cell;
     background-color: white;
-    position: absolute;
-    right: 0;
-    left: 180px;
-    top: 0;
     min-height: 550px;
-    // height: 100%;
+    width: 100%;
 }
 
 sup {
@@ -133,4 +130,23 @@ sup {
 
 ::ng-deep .left-content .dx-treeview-node.dx-state-selected > .dx-item > .dx-item-content {
     font-weight: 500;
+}
+
+::ng-deep .dx-treeview-item-without-checkbox.dx-state-selected > .dx-treeview-item {
+    color: rgb(2, 92, 89);
+    background-color: rgb(197, 223, 213);
+}
+::ng-deep .dx-treeview-item .dx-treeview-item-content span {
+    color: #025c59;
+    vertical-align: middle;
+}
+::ng-deep .dx-item.dx-treeview-item.dx-state-hover {
+    background-color: rgba(197, 223, 213, 0.534);
+}
+::ng-deep .dx-treeview-item-without-checkbox.dx-state-selected > .dx-treeview-item.dx-state-hover:not(.dx-state-focused){
+    background-color: rgba(36, 110, 82, 0.438);
+}
+
+::ng-deep .dx-treeview-item-without-checkbox.dx-state-focused >.dx-treeview-item{
+    background-color: rgba(197, 223, 213, 0.534);
 }

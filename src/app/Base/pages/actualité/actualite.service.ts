@@ -88,7 +88,7 @@ export class ActualiteService {
                 .filter((data:any)=>{
                         data.filiresname = ""
                         for (const filiere of data.filieres) {
-                          data.filiresname += filiere.name+" ";
+                          data.filiresname += filiere.name+filiere.niveau+" ";
                         }
                         return data
                 })

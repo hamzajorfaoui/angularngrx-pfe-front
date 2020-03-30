@@ -1,7 +1,7 @@
 .statis{
     padding-left: 20px !important;
     background-color: white;
-    margin-top: 20px;
+    // margin-top: 20px;
     border-radius: 6px;
     height: auto;
     min-height: 300px;
@@ -15,14 +15,20 @@
     border-radius: 3px;
 }
 .title{
-    width: 100%;
+    width: 102%;
     padding-top: 15px;
     border-bottom: 1px solid #4397774f;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
+    margin-left: -20px;
     .contenu{
         font-size: 1.2rem;
         font-weight: 500;
         color: #025c59;
         float: left;
+        margin-left: 5px;
     }
 }
+// .row{
+//         margin-right: 0px !important;
+//         margin-left: -20px !important;
+// }

@@ -1,3 +1,4 @@
+import  CustomStore  from 'devextreme/data/custom_store';
 import { EmploiService } from './../emploi.service';
 import { FiliereService } from './../../filiere/filiere.service';
 import { Component, OnInit } from '@angular/core';
@@ -36,6 +37,7 @@ export class EmploidutempsComponent implements OnInit {
     value:"" 
   }
   loading=false;
+  emploidutemps;
   ngOnInit() {
     this.filS.getfiliere().then(
       data=>{
@@ -48,8 +50,10 @@ export class EmploidutempsComponent implements OnInit {
        }
       }
     );
-
-    this.EmpS.getemploidutemps();
+    this.emploidutemps = new CustomStore({
+      key:'id',
+      load:()=>this.EmpS.getemploidutemps()
+    });
   }
  
   OtherImages :any[] = [];
