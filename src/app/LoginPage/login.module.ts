@@ -1,3 +1,4 @@
+import { DepartementEffect } from './../State/Departement/departement.effect';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { LoginReducer } from "./state/login.reducer";
 import { LoginEffects } from "./state/login.effect";
 
+
 @NgModule({
   declarations: [
     LoginComponent
@@ -15,8 +17,8 @@ import { LoginEffects } from "./state/login.effect";
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    StoreModule.forFeature("Login", LoginReducer),
-    EffectsModule.forFeature([LoginEffects])
+    // StoreModule.forFeature("Login", LoginReducer),
+    EffectsModule.forFeature([LoginEffects , DepartementEffect])
   ]
 })
 export class LoginModule { }

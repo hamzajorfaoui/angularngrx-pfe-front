@@ -1,3 +1,4 @@
+import { DepartementResolver } from './Resolves/departement.resolve';
 import { TabmatiereComponent } from './Base/pages/matiere/tabmatiere/tabmatiere.component';
 import { MatiereComponent } from './Base/pages/matiere/matiere/matiere.component';
 import { FiliereComponent } from './Base/pages/filiere/filiere.component';
@@ -24,8 +25,8 @@ const routes: Routes = [
   {path:'emploi' ,loadChildren:() => import('./Base/pages/Emploi/emploi.module').then(m => m.EmploiModule)} , 
   
   {path:'prof/gestion' , component:GestionprofsComponent},
-  {path:'prof/chercher' , component:SearchprofComponent},
-  {path:'departement/gestion' , component:DepartementComponent},
+  {path:'prof/chercher' , component:SearchprofComponent },
+  {path:'departement/gestion' , component:DepartementComponent , resolve:{departement:DepartementResolver}},
   {path:'filiere/gestion' , component:FiliereComponent},
   {path:'filiere/matiere/gestion' , component:MatiereComponent , children:[
     {path:':filierename/:filiereid' , component:TabmatiereComponent}

@@ -53,6 +53,6 @@ export const BaseRouting : Routes = []
     MatiereComponent,
     TabmatiereComponent,
     SearchprofComponent
-    ]
+    ],providers:[]
 })
 export class BaseModule { }

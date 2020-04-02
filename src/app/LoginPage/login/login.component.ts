@@ -6,6 +6,8 @@ import { Store , select } from "@ngrx/store";
 import * as LoginActions from "../state/login.action";
 import * as LoginReducer from "../state/login.reducer";
 
+import {AppState} from "../../State/app-state";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +15,7 @@ import * as LoginReducer from "../state/login.reducer";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private store:Store<LoginReducer.AppState>) { }
+  constructor(private store:Store<AppState>) { }
   Error$ :Observable<String>
   Loading$ :Observable<boolean>
   

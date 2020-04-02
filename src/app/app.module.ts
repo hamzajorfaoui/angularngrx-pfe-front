@@ -1,3 +1,7 @@
+import { SharedModuleModule } from './Base/material/shared-module.module';
+import { DepartementResolver } from './Resolves/departement.resolve';
+
+import { DataPersistence } from '@nrwl/nx';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
 import { ErrorInterceptorService } from './Services/error-interceptor.service';
 import { LoginModule } from './LoginPage/login.module';
@@ -8,10 +12,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { StoreModule} from "@ngrx/store";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { EffectsModule } from '@ngrx/effects';
 import { BaseModule } from './Base/base.module';
+import { StateModule } from './State/state.module';
+
 
 @NgModule({
   declarations: [
@@ -22,14 +25,15 @@ import { BaseModule } from './Base/base.module';
     BrowserModule,
     AppRoutingModule,
     BaseModule, 
-    
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument(),
-    HttpClientModule
+    StateModule,
+    HttpClientModule,
+    SharedModuleModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptorService,multi: true}, 
-  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  providers: [
+    DepartementResolver,
+  {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptorService,multi: true}, 
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},
+   DataPersistence],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

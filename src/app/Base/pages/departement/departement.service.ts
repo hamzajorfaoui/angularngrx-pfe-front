@@ -43,4 +43,9 @@ export class DepartementService {
     return this.http.get("http://127.0.0.1:8000/api/dept/deptname/"+name)
   }
 
+
+  getdepartementstest(){
+    return this.http.get<any[]>("http://127.0.0.1:8000/api/dept")
+  }
+
 }

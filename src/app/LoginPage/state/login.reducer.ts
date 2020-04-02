@@ -11,9 +11,10 @@ export interface LoginState {
     error: String,
     user:User
 } 
-export interface AppState extends fromRoot.AppState{
-    Login:LoginState;
-}
+ 
+// export interface AppState extends fromRoot.AppState{
+//     Login:LoginState;
+// }
 export const defaultLogin :LoginState={
     Login:{
         isLoggedIn:false,

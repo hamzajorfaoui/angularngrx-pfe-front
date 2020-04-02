@@ -1,3 +1,4 @@
+import { AppState } from '../State/app-state';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -10,7 +11,7 @@ import * as LoginReducer from "../LoginPage/state/login.reducer";
 })
 export class LoginserviceService {
 
-  constructor(private http:HttpClient , private route:Router , private store:Store<LoginReducer.AppState> ,) { }
+  constructor(private http:HttpClient , private route:Router , private store:Store<AppState>) { }
 
   Login(user){
     return this.http.post("http://127.0.0.1:8000/api/login",{"email":user.email,"password":user.passwoard})

@@ -78,7 +78,7 @@
             <dxi-column dataField="updated_at"   dataType="datetime"format="M/d/yyyy, HH:mm"></dxi-column>
         
             <div *dxTemplate="let data of 'cellTemplate'">
-                <img src="http://localhost/blog/public/images/903851.jpg" alt=""  height="50"/>
+                <img src="http://127.0.0.1:8000{{data.value}}" alt=""  height="50"/>
                 <!-- <h1>data.value</h1> -->
             </div>
         </dx-data-grid>
