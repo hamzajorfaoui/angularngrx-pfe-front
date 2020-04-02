@@ -54,33 +54,78 @@
                 horizontalAlignment="right"
                 [buttonOptions]="buttonOptions">
                 </dxi-item> 
-                
+                <dxi-item *ngIf="loading" >
+                    <div *dxTemplate style="width: 100%;height:30px;">
+                        <div class="spinner-border text-success" role="status" style="float: right;">
+                          <span class="sr-only">Loading...</span>
+                      </div>  
+                      </div>
+                </dxi-item>
         </dx-form>
-        <div *ngIf="loading" style="width: 100%;height:30px;">
-          <div class="spinner-border text-success" role="status" style="float: right;">
-            <span class="sr-only">Loading...</span>
-        </div>  
-        </div>
+        
     </form>
     <div class="data">
-
+        
         <dx-data-grid 
         #targetDataGrid
+        (onEditorPreparing)="onEditorPreparing($event)" 
+        (onEditingStart)="onUpdate($event)"
         id="gridContainer" 
         [dataSource]="emploidutemps" 
         [showBorders]="true"
+        [repaintChangesOnly]="true"
         keyExpr="id">
+        
+        <dxo-editing 
+        mode="form"
+        [allowUpdating]="true">
+        <dxo-form>
+            <dxi-item itemType="group" caption="Emploi du temps">
+                <dxi-item dataField="newtemp"></dxi-item>
+            <!-- <dxi-item dataField="newtemp"
+                      editorType="dxFileUploader" 
+                      [editorOptions]="{selectButtonText:'Select photo', accept:'image/*' , uploadMode:'useButton', onValueChanged:previewNewfile}">
+              <dxi-validation-rule type="required"></dxi-validation-rule> 
+              <dxo-label
+                text="Emploi du temps"> 
+               </dxo-label>
+            </dxi-item> -->
+            </dxi-item>
+            <dxi-item itemType="group" caption="Preview">
+               <dxi-item>
+                    <div *dxTemplate class="col-12" >
+                        <div  class="border-image">
+                        <dx-gallery 
+                        #gallery1
+                        id="gallery1"
+                        [dataSource]="imageSelected"
+                        [height]="340"
+                        [slideshowDelay]="slideshowDelay"
+                        [loop]="false"
+                        [showNavButtons]="false"
+                        [showIndicator]="false"
+                        [swipeEnabled]="false"
+                        ></dx-gallery>    
+                        </div>
+                    </div>
+                </dxi-item>
+            </dxi-item>
+        </dxo-form>
+        </dxo-editing>
+
             <dxi-column dataField="temp" [width]="150" [allowFiltering]="false"
                 [allowSorting]="false" cellTemplate="cellTemplate"></dxi-column>
-            <dxi-column dataField="filiere_id"  caption="Filiere" [width]="70"></dxi-column>
-            <dxi-column dataField="semester_id"  caption="Semestre" [width]="80"></dxi-column>
+            <dxi-column dataField="fillier"  caption="Filiere" [width]="70"></dxi-column>
+            <dxi-column dataField="semester"  caption="Semestre" [width]="80"></dxi-column>
             <dxi-column dataField="created_at"  dataType="datetime"format="M/d/yyyy, HH:mm"></dxi-column>
             <dxi-column dataField="updated_at"   dataType="datetime"format="M/d/yyyy, HH:mm"></dxi-column>
-        
+            <dxi-column dataField="newtemp"  [visible]="false"></dxi-column>
+
             <div *dxTemplate="let data of 'cellTemplate'">
                 <img src="http://127.0.0.1:8000{{data.value}}" alt=""  height="50"/>
-                <!-- <h1>data.value</h1> -->
             </div>
+
+
         </dx-data-grid>
 
     </div>

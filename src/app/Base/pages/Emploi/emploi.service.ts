@@ -1,7 +1,6 @@
+import { map, filter } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { emploidutemps } from './emploidutemps/emploidutemps.component';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +24,13 @@ export class EmploiService {
   }
   getemploidutemps(){
   return this.http.get('http://127.0.0.1:8000/api/temps')
+  .pipe(
+    map((data)=>
+    {console.log(data["data"]); 
+      return data["data"].map((data)=>({...data, newtemp: []}))
+     })
+    )
+    
   .toPromise()
   .then(
     data=>{
@@ -35,6 +41,13 @@ export class EmploiService {
   .catch(er=>{
     throw er
   })
+  }
+  updateemploidutemp(id , file){
+    const formData = new FormData();
+    formData.append('emploitemp', file);
+    return this.http.post('http://127.0.0.1:8000/api/temps/modify/'+id, formData , {
+      headers: new HttpHeaders({'Accept': 'application/json'})
+    })
   }
 
 }

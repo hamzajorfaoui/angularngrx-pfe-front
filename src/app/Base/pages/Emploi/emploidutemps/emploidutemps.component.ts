@@ -1,7 +1,8 @@
+import { DxDataGridComponent } from 'devextreme-angular';
 import  CustomStore  from 'devextreme/data/custom_store';
 import { EmploiService } from './../emploi.service';
 import { FiliereService } from './../../filiere/filiere.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 
 
@@ -52,10 +53,16 @@ export class EmploidutempsComponent implements OnInit {
     );
     this.emploidutemps = new CustomStore({
       key:'id',
-      load:()=>this.EmpS.getemploidutemps()
+      load:()=>this.EmpS.getemploidutemps(),
+      update:(key , values)=>this.test(key , values)
     });
   }
- 
+  test(key , values){
+  
+  console.log(values);
+setTimeout(()=>{console.log('okk');},3000);
+   return new Promise<any>(function(res, er){res(values)});
+  }
   OtherImages :any[] = [];
   previewFiles =async ()=>{
     if(this.dataSource){
@@ -83,8 +90,25 @@ export class EmploidutempsComponent implements OnInit {
           }else{
   
           }
+   }}
+  newimageFile = null;
+  previewNewfile=async (e)=>{
+    console.log(this.emploidutemps)
+   console.log(e.value) 
+    this.newimageFile = e.value;
+    var reader  = new FileReader();
+    reader.addEventListener("load",  () => {
+      var image = new Image();
+      image.src = String(reader.result);
+      image.onload = () =>{
+        this.imageSelected = [];
+        this.imageSelected.push(reader.result);  
+    };
+    }, false);
+   if (this.newimageFile ) {
+    reader.readAsDataURL(this.newimageFile[0] )
    }
-  
+   
   }
   changefiliere = (e)=>{
     this.Selectsemestre(e.selectedItem.niveau);
@@ -96,23 +120,56 @@ export class EmploidutempsComponent implements OnInit {
       this.semestre = this.date > 1 ? {id:1 , value:"S1"}:{id:2 , value:"S2"}
       break;
     case 2:
-        this.semestre = this.date > 1 ? {id:1 , value:"S3"}:{id:2 , value:"S4"}
+        this.semestre = this.date > 1 ? {id:2 , value:"S3"}:{id:3 , value:"S4"}
       break;
     case 3:
-        this.semestre = this.date > 1 ? {id:1 , value:"S5"}:{id:2 , value:"S6"}
+        this.semestre = this.date > 1 ? {id:4 , value:"S5"}:{id:5 , value:"S6"}
       break;
     default:
       this.semestre ={id:0,value:""}
       break;
   }
   }
-  
+  @ViewChild('targetDataGrid', { static: false }) dataGrid: DxDataGridComponent;
   onFormSubmit = (e) => {  
+    this.loading = true;
     e.preventDefault();
     this.EmpS.addemploidutemps(this.dataSource).subscribe(data=>{
-    this.dataSource.emploiImage=[];
     this.OtherImages = [];
+    this.dataSource.emploiImage=[];
+    this.loading = false;
+    this.dataGrid.instance.refresh();
     })
   } 
+  imageSelected = []; 
+  emploiselected = null;
+  onUpdate(e){
+    this.emploiselected = e.data;
+    this.imageSelected = [] ; 
+    this.imageSelected.push("http://127.0.0.1:8000"+e.data.temp);
+  }
+
+  onEditorPreparing(e) {
+    if(e.dataField === "newtemp") {
+      
+            e.editorName = "dxFileUploader";  
+            e.editorOptions = {
+              uploadMode : "useButtons",
+              multipe:false,
+              accept:'image/*',
+              uploadFile :(args)=>{
+                this.EmpS.updateemploidutemp(this.emploiselected.id , args.value).subscribe(
+                  data=>{
+                    this.dataGrid.instance.refresh();
+                    this.imageSelected = [] ; 
+                  }
+                )
+              },
+              onValueChanged:(args)=>{
+                this.previewNewfile(args);
+              }
+            }    
+     }
 }
- 
+}
+   
