@@ -1,18 +1,18 @@
+import { DepartementFacade } from './../../../State/Departement/departement.facade';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root'
 })
 export class DepartementService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient , private DF:DepartementFacade) { }
 
   getdepartements(){
     return this.http.get("http://127.0.0.1:8000/api/dept")
     .toPromise()
     .then((data: any[]) => {
-      console.log(data)
+      // console.log(data)
         return  data;
     }).catch(e => {
       throw e && e.error && e.error.Message;
@@ -22,6 +22,7 @@ export class DepartementService {
     return this.http.post("http://127.0.0.1:8000/api/dept" , values)
     .toPromise()
     .then((data: any) => {
+      console.log(data);
         return  data;
     }).catch(e => {
       throw e && e.error && e.error.Message;

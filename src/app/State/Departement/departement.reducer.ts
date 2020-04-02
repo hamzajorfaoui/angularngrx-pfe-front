@@ -1,10 +1,13 @@
 import * as deptActions from "./departement.action";
 import {createFeatureSelector  , createSelector} from "@ngrx/store";
-import { EntityState , EntityAdapter , createEntityAdapter} from "@ngrx/entity";
+import { EntityState , EntityAdapter , createEntityAdapter, Update} from "@ngrx/entity";
 
 export interface Departement{
     id:number,
-    name:String
+    name:String,
+    created_at: any,
+    updated_at: any
+
 }
 
 export interface DepartementState extends EntityState<Departement>{
@@ -28,7 +31,7 @@ export function DepartementReducer (state = deptInitState , action :deptActions.
                 loaded:true
             })
             break;
-         case deptActions.DepartementTypes.LOAD_DEPARTEMENT_FAILED:
+        case deptActions.DepartementTypes.LOAD_DEPARTEMENT_FAILED:
             console.log(action.payload);
             return {
                 ...state,
@@ -36,7 +39,17 @@ export function DepartementReducer (state = deptInitState , action :deptActions.
                 loaded:true
             }
             break;
-    
+        case deptActions.DepartementTypes.ADD_DEPARTEMENT:
+            console.log(action.payload);
+            return Departementadapter.addOne(action.payload,{...state})
+            break;
+        case deptActions.DepartementTypes.UPDATE_DEPARTEMENT:
+            const editSubmission: Update<Departement> = {
+                id: action.payload .id,
+                changes: {name:action.payload.name , updated_at:action.payload.updated_at}
+              };
+            return Departementadapter.updateOne(editSubmission,state )
+            break;
         default:
             return state
             break;

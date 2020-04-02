@@ -14,6 +14,13 @@ export class DepartementFacade {
     loadDepts(){
        this.store.dispatch(new deptActions.LoadDepartement);
     }
+    AddDepts(departement){
+      this.store.dispatch(new deptActions.ADDDepartement(departement));
+    }
+    Updatedept(departement){
+      this.store.dispatch(new deptActions.UPDATEDepartement(departement));
+    }
+
     Depts$ =this.store.pipe(select(deptReducer.departements));
     DeptLoaded$ =this.store.pipe(select(deptReducer.DepartementLoaded));
 

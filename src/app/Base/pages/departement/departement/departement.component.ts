@@ -22,11 +22,13 @@ export class DepartementComponent implements OnInit {
       key: "id",
       loadMode: "processed",
       load: () => this.DF.Depts$.pipe(take(1))
-      .toPromise()
-      .then(d=>{return d})
-      .catch(e=>{throw e}),
-      insert: (values) => this.deptS.adddepartement(values),
-      update: (key, values) => this.deptS.updatedepartement(key , values),
+                  .toPromise()
+                  .then(d=>{return d})
+                  .catch(e=>{throw e}),
+      insert: (values) => this.deptS.adddepartement(values)
+                              .then(data=>this.DF.AddDepts(data)),
+      update: (key, values) => this.deptS.updatedepartement(key , values)
+                                   .then(data=>this.DF.Updatedept(data)),
       // remove: (key) => this.profS.deleteprof(key)
   });
   }
