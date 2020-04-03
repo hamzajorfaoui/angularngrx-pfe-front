@@ -40,29 +40,36 @@ export class EmploidutempsComponent implements OnInit {
   loading=false;
   emploidutemps;
   ngOnInit() {
-    this.filS.getfiliere().then(
-      data=>{
-       for (const filiere of data["data"]) {
-        this.Filieres.push(
-          { name:filiere.name+" "+filiere.niveau , 
-            niveau:filiere.niveau,
-            id:filiere.id    
-          }) ;
-       }
-      }
-    );
     this.emploidutemps = new CustomStore({
       key:'id',
-      load:()=>this.EmpS.getemploidutemps(),
-      update:(key , values)=>this.test(key , values)
+      load:()=>this.EmpS.getemploidutemps().then(data=>
+        {this.filiereselectvalue(data); return data;})
     });
   }
-  test(key , values){
-  
-  console.log(values);
-setTimeout(()=>{console.log('okk');},3000);
-   return new Promise<any>(function(res, er){res(values)});
+  filiereselectvalue(emplois){
+    this.filS.getfiliere()
+    .then(data=>{
+       return data["data"].map(d=> { return {name:d.name+" "+d.niveau , 
+                                             niveau:d.niveau,
+                                             semestre:this.Selectsemestre(d.niveau),
+                                             id:d.id}     
+       });
+    }).then(data=>{
+          var dis =(d)=>{
+            var disab = false;
+              emplois.forEach(e => {
+                if(e.fillier == d.name && e.semester == d.semestre){
+                disab=true;
+                }
+              });
+                return disab
+              } 
+          this.Filieres = data.map(d=>{
+            return {...d,disabled:dis(d)}
+          });
+          });
   }
+
   OtherImages :any[] = [];
   previewFiles =async ()=>{
     if(this.dataSource){
@@ -129,6 +136,7 @@ setTimeout(()=>{console.log('okk');},3000);
       this.semestre ={id:0,value:""}
       break;
   }
+  return this.semestre.value;
   }
   @ViewChild('targetDataGrid', { static: false }) dataGrid: DxDataGridComponent;
   onFormSubmit = (e) => {  
