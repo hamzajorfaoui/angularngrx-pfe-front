@@ -12,11 +12,8 @@ export class ActualiteComponent implements OnInit {
   deptfilieres
   loading;
   constructor( private service:EtudiantService , private activroute:ActivatedRoute  , private route:Router) { 
-    this.loading = true;
     service.getdeptfiliere().subscribe(data=>{
       this.deptfilieres = data;
-    },(er)=>{},()=>{this.loading = false;
-
       if(this.activroute.firstChild){
         this.deptfilieres.forEach(element => {
           element['items'].forEach(element => {
@@ -26,6 +23,7 @@ export class ActualiteComponent implements OnInit {
           });
         });
       }
+    },(er)=>{},()=>{this.loading = false;
     })
   }
 

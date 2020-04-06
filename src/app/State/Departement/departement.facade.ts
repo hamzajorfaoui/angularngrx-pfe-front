@@ -23,7 +23,4 @@ export class DepartementFacade {
 
     Depts$ =this.store.pipe(select(deptReducer.departements));
     DeptLoaded$ =this.store.pipe(select(deptReducer.DepartementLoaded));
-
-    
-
 }

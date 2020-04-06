@@ -100,8 +100,6 @@ export class EmploidutempsComponent implements OnInit {
    }}
   newimageFile = null;
   previewNewfile=async (e)=>{
-    console.log(this.emploidutemps)
-   console.log(e.value) 
     this.newimageFile = e.value;
     var reader  = new FileReader();
     reader.addEventListener("load",  () => {
@@ -177,7 +175,7 @@ export class EmploidutempsComponent implements OnInit {
                 this.previewNewfile(args);
               }
             }    
-     }
+    }
 }
 }
    

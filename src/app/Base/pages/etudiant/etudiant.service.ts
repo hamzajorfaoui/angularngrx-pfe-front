@@ -1,3 +1,4 @@
+import { Dept_Fillfacade } from './../../../State';
 import { Observable } from 'rxjs';
 import { map, tap, filter} from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -22,10 +23,9 @@ export interface filiere{
   })
   export class EtudiantService {
   
-    constructor(private http:HttpClient) { }
-
-   getdeptfiliere(){
-       return this.http.get("http://127.0.0.1:8000/api/departements")
+    constructor(private http:HttpClient , private DDF:Dept_Fillfacade) { }
+    getdeptfiliere2(){
+ return this.http.get("http://127.0.0.1:8000/api/departements")
             .pipe(
                 tap((data)=> console.log(data)),    
                 map((datas:departement[]) => {return datas['data']
@@ -36,6 +36,9 @@ export interface filiere{
                 .filter((data:departement)=> data.items.filter((fil:filiere)=>fil.id = fil['id']+"-")) 
               }),
                )
+    }
+   getdeptfiliere(){
+      return this.DDF.Dept_Fill_All$
                 
             //   .toPromise()
             //   .then((data)=>{

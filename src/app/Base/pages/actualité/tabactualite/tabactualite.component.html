@@ -4,7 +4,9 @@
     <div class="tableau"  *ngIf="AnnocesF && dataSource">
         <h6 style="color:#348f6cec;">Ajouter Une Annoce :</h6>
         <form  (submit)="onFormSubmit($event)">
-        <dx-form id="form"
+        <dx-form 
+            #formtarget
+            id="form"
             [formData]="dataSource">
             
             <dxi-item itemType="group" cssClass="first-group" [colCount]="2">
@@ -58,14 +60,15 @@
                 horizontalAlignment="right"
                 [buttonOptions]="buttonOptions">
                 </dxi-item> 
+                <dxi-item *ngIf="loading" >
+                    <div *dxTemplate style="width: 100%;height:30px;">
+                        <div class="spinner-border text-success" role="status" style="float: right;">
+                          <span class="sr-only">Loading...</span>
+                      </div>  
+                      </div>
+                </dxi-item>
                 
-        </dx-form>
-        <div *ngIf="loading" style="width: 100%;height:30px;">
-          <div class="spinner-border text-success" role="status" style="float: right;">
-            <span class="sr-only">Loading...</span>
-        </div>  
-        </div>
-        
+        </dx-form>       
         </form>
         
 <div  *ngIf="AnnocesF">
@@ -88,11 +91,6 @@
         <dxi-column dataField="date_auralieu" [width]="130" ></dxi-column>
         <!-- <dxi-column dataField="created_at" [width]="130"></dxi-column>
         <dxi-column dataField="updated_at" [width]="130"></dxi-column> -->
-        <!-- <dxi-column dataField="id" [width]="100" [allowFiltering]="false"
-        [allowSorting]="false" cellTemplate="cellTemplate" caption="Profile"></dxi-column>
-        <div *dxTemplate="let data of 'cellTemplate'" class="profile">
-            <a [routerLink]="['/dashboard/etudiant/profile',data.value]" ><i class="grrr far fa-id-card">{{data.id}}</i></a>
-        </div> -->
         <dxo-editing 
                     mode="popup"
                     [refreshMode]="full"

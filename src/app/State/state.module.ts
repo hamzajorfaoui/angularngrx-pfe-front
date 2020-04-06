@@ -1,3 +1,4 @@
+import { Dept_Fill_Effect } from './Dept_Fil/Dept_Fil.effect';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,10 +11,11 @@ import {reducers} from "./app-state";
 @NgModule({
   declarations: [], 
   imports: [
-    CommonModule,
+    CommonModule, 
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([Dept_Fill_Effect]),
     StoreDevtoolsModule.instrument(),
   ]
-})
+}) 
 export class StateModule { }
+ 

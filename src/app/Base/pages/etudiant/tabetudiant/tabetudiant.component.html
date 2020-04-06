@@ -18,12 +18,12 @@
     
     <dxo-selection mode="single"></dxo-selection>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxi-column dataField="id"  caption="Identifiant"></dxi-column>
+    <dxi-column dataField="id"  caption="Identifiant" [width]="80"></dxi-column>
     <dxi-column dataField="fullname"></dxi-column>
     <dxi-column dataField="cin"  ></dxi-column>
     <dxi-column dataField="cne"  ></dxi-column>
-    <dxi-column dataField="created_at" [width]="130"></dxi-column>
-    <dxi-column dataField="updated_at" [width]="130"></dxi-column>
+    <dxi-column dataField="created_at" [hidingPriority]="1" ></dxi-column>
+    <dxi-column dataField="updated_at" [hidingPriority]="0"></dxi-column>
     <dxi-column dataField="id" [width]="100" [allowFiltering]="false"
     [allowSorting]="false" cellTemplate="cellTemplate" caption="Profile"></dxi-column>
     <div *dxTemplate="let data of 'cellTemplate'" class="profile">

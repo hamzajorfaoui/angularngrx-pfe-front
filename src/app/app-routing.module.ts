@@ -1,3 +1,4 @@
+import { Dept_FillResolver } from './Resolves/Dept_Fill.resolve';
 import { DepartementResolver } from './Resolves/departement.resolve';
 import { TabmatiereComponent } from './Base/pages/matiere/tabmatiere/tabmatiere.component';
 import { MatiereComponent } from './Base/pages/matiere/matiere/matiere.component';
@@ -20,15 +21,15 @@ const routes: Routes = [
   component: DashboardComponent,
   canActivate:[AuthguardGuard],
   children:[
-  {path:'etudiant' , loadChildren:"./Base/pages/etudiant/etudiant.module#EtudiantModule"},
-  {path:'actualite' ,loadChildren:"./Base/pages/actualité/actualite.module#ActualiteModule"},
+  {path:'etudiant' , resolve:{deptfill:Dept_FillResolver}, loadChildren:"./Base/pages/etudiant/etudiant.module#EtudiantModule"},
+  {path:'actualite' ,resolve:{deptfill:Dept_FillResolver},loadChildren:"./Base/pages/actualité/actualite.module#ActualiteModule"},
   {path:'emploi' ,loadChildren:() => import('./Base/pages/Emploi/emploi.module').then(m => m.EmploiModule)} , 
   
   {path:'prof/gestion' , component:GestionprofsComponent},
   {path:'prof/chercher' , component:SearchprofComponent },
   {path:'departement/gestion' , component:DepartementComponent , resolve:{departement:DepartementResolver}},
-  {path:'filiere/gestion' , component:FiliereComponent},
-  {path:'filiere/matiere/gestion' , component:MatiereComponent , children:[
+  {path:'filiere/gestion', resolve:{departement:DepartementResolver} , component:FiliereComponent},
+  {path:'filiere/matiere/gestion' , resolve:{deptfill:Dept_FillResolver},component:MatiereComponent , children:[
     {path:':filierename/:filiereid' , component:TabmatiereComponent}
   ]}, 
   {path:'' ,  component:HomepageComponent},

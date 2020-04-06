@@ -7,7 +7,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class LoadingpageComponent implements OnInit , OnChanges{
 
-  @Input() loading;
+  @Input() loading :boolean;
   @Input() idparent;
 
   load;

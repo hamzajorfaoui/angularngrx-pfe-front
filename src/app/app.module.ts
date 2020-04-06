@@ -1,3 +1,4 @@
+import { Dept_FillResolver } from './Resolves/Dept_Fill.resolve';
 import { SharedModuleModule } from './Base/material/shared-module.module';
 import { DepartementResolver } from './Resolves/departement.resolve';
 
@@ -30,6 +31,7 @@ import { StateModule } from './State/state.module';
     SharedModuleModule
   ],
   providers: [
+    Dept_FillResolver,
     DepartementResolver,
   {provide: HTTP_INTERCEPTORS,useClass: ErrorInterceptorService,multi: true}, 
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true},

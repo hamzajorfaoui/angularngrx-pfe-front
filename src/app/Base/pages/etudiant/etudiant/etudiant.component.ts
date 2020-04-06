@@ -29,22 +29,19 @@ export class EtudiantComponent implements OnInit {
   }
 
   constructor(private service: EtudiantService , private route:Router , private activroute: ActivatedRoute) {
-    this.loading = true;
     service.getdeptfiliere().subscribe(data=>{
       this.deptfilieres = data;
-      console.log(this.deptfilieres)
-    },(er)=>{},()=>{this.loading = false;
- 
-      if(this.activroute.firstChild){
-        this.deptfilieres.forEach(element => {
-          element['items'].forEach(element => {
-            if(element.id == this.activroute.firstChild.snapshot.params['filiereid']+"-"){
-                element.selected = true;
-            }
-          });
-        });
-      }
-    })
+      console.log("fallll")
+       if(this.activroute.firstChild){
+         this.deptfilieres.forEach(element => {
+           element['items'].forEach(element => {
+             if(element.id == this.activroute.firstChild.snapshot.params['filiereid']+"-"){
+                 element.selected = true;
+             }
+           });
+         });
+       }
+    },(er)=>{},()=>{})
    
   }
 

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ActualiteComponent } from './actualite/actualite.component';
 import { TabactualiteComponent } from './tabactualite/tabactualite.component';
 import { AnnonceComponent } from './annonce/annonce.component';
-
+import { DxPopupModule, DxButtonModule, DxTemplateModule } from 'devextreme-angular';
 export const actualiteRouting : Routes = [
   {path:'annonce/gestion' , component:ActualiteComponent , children:[
     {path:':filierename/:filiereid' , component:TabactualiteComponent},
@@ -34,6 +34,10 @@ export const actualiteRouting : Routes = [
     DxListModule,
     SharedModuleModule,
     DxTreeViewModule, 
+    DxPopupModule,
+    DxButtonModule, 
+    DxTemplateModule,
+    
     CommonModule,
     RouterModule.forChild(actualiteRouting)
   ]

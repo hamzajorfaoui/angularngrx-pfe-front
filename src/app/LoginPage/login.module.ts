@@ -18,7 +18,7 @@ import { LoginEffects } from "./state/login.effect";
     ReactiveFormsModule,
     CommonModule,
     // StoreModule.forFeature("Login", LoginReducer),
-    EffectsModule.forFeature([LoginEffects , DepartementEffect])
+    EffectsModule.forFeature([LoginEffects , DepartementEffect ])
   ]
 })
 export class LoginModule { }

@@ -2,7 +2,7 @@ import  CustomStore  from 'devextreme/data/custom_store';
 import { ActivatedRoute } from '@angular/router';
 import { ActualiteService } from './../actualite.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { DxDataGridComponent } from "devextreme-angular";
+import { DxDataGridComponent, DxFormComponent } from "devextreme-angular";
 
 @Component({
   selector: 'app-tabactualite',
@@ -62,17 +62,19 @@ export class TabactualiteComponent implements OnInit {
 Professeur;
 
 @ViewChild('targetDataGrid', { static: false }) dataGrid: DxDataGridComponent;
-onFormSubmit = function(e) {  
+@ViewChild('formtarget', { static: false }) formtarget: DxFormComponent;
+onFormSubmit = (e) =>{  
  this.loading=true;
  this.AnnocesF.insert(this.dataSource)
                .then(
                  data=>{
-                   this.dataGrid.instance.refresh();                   
-                   this.dataSource['Date Prévu'] = undefined;
-                   this.dataSource['Date aura Lieu'] = undefined;
-                   this.loading=false; 
+                  this.dataGrid.instance.refresh();                   
+                  //  this.dataSource['Date Prévu'] = undefined;
+                  //  this.dataSource['Date aura Lieu'] = undefined;
+                  this.formtarget.instance.resetValues();
+                  this.loading=false; 
                  }
-               )
+               ).catch(e=>{this.loading=false;throw e;})
 
   
   e.preventDefault();

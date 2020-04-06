@@ -15,11 +15,8 @@ export class MatiereComponent implements OnInit {
   selectedfiliereid:number =  0;
   selectedfilieretitle="";
   constructor(private service: EtudiantService , private route:Router , private activroute: ActivatedRoute) {
-    this.loading = true;
     service.getdeptfiliere().subscribe(data=>{
       this.deptfilieres = data;
-    },(er)=>{},()=>{this.loading = false;
- 
       if(this.activroute.firstChild){
         this.deptfilieres.forEach(element => {
           element['items'].forEach(element => {
@@ -29,6 +26,7 @@ export class MatiereComponent implements OnInit {
           });
         });
       }
+    },(er)=>{},()=>{
     })
    }
 

@@ -7,6 +7,8 @@ import * as LoginActions from "../../LoginPage/state/login.action";
 import * as LoginReducer from "../../LoginPage/state/login.reducer";
 
 import {AppState} from "../../State/app-state";
+import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCancel, RoutesRecognized } from '@angular/router';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,7 +16,20 @@ import {AppState} from "../../State/app-state";
 })
 export class DashboardComponent implements OnInit {
  
-  constructor(private store:Store<AppState> , private LS:LoginserviceService , private DF:DepartementFacade) { }
+  constructor(private store:Store<AppState> ,router:Router) { 
+    router.events.forEach((event) => {
+      if(event instanceof NavigationStart) {
+        console.log("ha l3are ma 5dme !!")
+      }
+      if(event instanceof NavigationEnd) {
+      }
+      // NavigationEnd
+      // NavigationCancel
+      // NavigationError
+      // RoutesRecognized
+    });
+
+  }
   Loading$ :Observable<boolean>; 
   loading :boolean = true;
   ngOnInit() {
