@@ -9,8 +9,11 @@
         [attr.y]="jour_positions_Y(index)"
         [attr.data_jour]="JR"
         [attr.data_semaine]="S.number"
-        style="fill:#d3d3d3" 
+        style="fill:#d3d3d3;" 
+        (click)="select_day($event)"
         (mouseover)="tooltip($event)"/>
     </g>
+    <text x="0" y="9" class="semaine">1</text>
+    <text x="141" y="9" class="semaine">1</text>
 </svg>
 </div>

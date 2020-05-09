@@ -30,4 +30,15 @@ export class AbsenceComponent implements OnInit {
       title: 'Semaine '+e.target.getAttribute('data_semaine')+' Jour '+e.target.getAttribute('data_jour')
     }).tooltip('show');
   }
+  select_day(e){
+    var _this = e.target;
+    $('rect')
+    .filter(function(index ){
+      return this != _this
+    })
+    .css('opacity','0.5');
+    $(_this)    
+    .css('opacity','1')
+
+  }
 }

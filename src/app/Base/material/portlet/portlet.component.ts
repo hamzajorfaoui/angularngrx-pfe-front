@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PortletComponent implements OnInit {
 
-  @Input() title :String;
+  @Input() titre :String;
   constructor() { }
 
   ngOnInit() {
