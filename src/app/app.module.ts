@@ -7,6 +7,7 @@ import { AuthInterceptorService } from './Services/auth-interceptor.service';
 import { ErrorInterceptorService } from './Services/error-interceptor.service';
 import { LoginModule } from './LoginPage/login.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -16,7 +17,6 @@ import { AppComponent } from './app.component';
 import { BaseModule } from './Base/base.module';
 import { StateModule } from './State/state.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
@@ -24,6 +24,7 @@ import { StateModule } from './State/state.module';
   imports: [
     LoginModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     BaseModule, 
     StateModule,

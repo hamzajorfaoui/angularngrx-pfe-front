@@ -16,6 +16,7 @@ import { MatiereComponent } from './pages/matiere/matiere/matiere.component';
 import { TabmatiereComponent } from './pages/matiere/tabmatiere/tabmatiere.component';
 import { SearchprofComponent } from './pages/Prof/searchprof/searchprof.component';
 import { EmploiModule } from "./pages/Emploi/emploi.module";
+import { RouteTransitDirective } from '../Directives/route-transit.directive';
 
 export const BaseRouting : Routes = []
 
@@ -34,6 +35,7 @@ export const BaseRouting : Routes = []
     RouterModule.forChild(BaseRouting)
   ], 
   declarations: [
+    RouteTransitDirective,
     DashboardComponent ,
     AsideBarComponent,
     NavBarComponent,

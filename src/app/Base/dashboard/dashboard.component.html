@@ -6,9 +6,9 @@
     <div class="item2">
         <app-aside-bar></app-aside-bar>
       </div>
-    <div class="item3">
-    <div class="container contenu">
-        <router-outlet></router-outlet>
+    <div class="item3" #outlet>
+    <div class="container contenu" appRouteTransit >
+        <router-outlet (activate)="onActivate($event , outlet)" ></router-outlet>
     </div>
 </div>
 

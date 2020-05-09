@@ -25,7 +25,12 @@ export class EtudprofileComponent implements OnInit {
     text: "Update",
     type: "success",
     useSubmitBehavior: true
-}
+ }
+ onFormSubmit(e){
+  e.preventDefault();
+
+  console.log(this.etudiant);
+ }
   goback(){
     this.location.back();
   }

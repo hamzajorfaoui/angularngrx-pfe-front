@@ -3,7 +3,9 @@
 <div class="tableau">
     <h6 style="color:#348f6cec;">Ajouter Un Emploi du temps :</h6>
     <form  (submit)="onFormSubmit($event)">
-        <dx-form id="form"
+        <dx-form 
+            #formtarget
+            id="form"
             [formData]="dataSource">
         
             <dxi-item dataField="FiliereId" editorType="dxSelectBox" #selectBox [editorOptions]="{ dataSource: Filieres, displayExpr:'name',searchEnabled: true, valueExpr:'id' , onSelectionChanged:this.changefiliere }">

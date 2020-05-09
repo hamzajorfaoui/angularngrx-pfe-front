@@ -1,6 +1,6 @@
 
-<div id="parent">
-<app-portlet title="Profile Etudiant">
+
+<app-portlet title="Profile Etudiant" id="parent">
 	<div >
      <a (click)="goback()" class="retour"><i class="fas fa-arrow-left"></i><span class="retorspan"> Retour</span></a>
 	</div>
@@ -11,6 +11,7 @@
 		<div class="p-3 mb-2 bg-info text-white" *ngIf="etudiant.user.email_verified_at">
 			cet etudiant a créer son compte !!
 		</div>
+	<form (submit)="onFormSubmit($event)">
 	<dx-form id="form"
 			 [formData]="etudiant">
 		<dxi-item itemType="group" cssClass="first-group" [colCount]="4">
@@ -21,21 +22,28 @@
 					<dxi-item dataField="fullname"></dxi-item>
 					<dxi-item dataField="cin"></dxi-item>
 					<dxi-item dataField="cne"></dxi-item>
+
+					<dxi-item 
+					caption="Update"
+					itemType="button"
+					horizontalAlignment="right"
+					[buttonOptions]="buttonOptions">
+				   </dxi-item>
 			</dxi-item>
 		</dxi-item>
-		<dxi-item 
-		    caption="Update"
-            itemType="button"
-            horizontalAlignment="right"
-            [buttonOptions]="buttonOptions">
-        </dxi-item>
 	</dx-form>
+	</form>
 	<dx-form 
 	*ngIf="etudiant.user.email_verified_at"
 	[formData]="etudiant.user">
+	<dxi-item >
+		<div *dxTemplate>
+			<h5 style="color:#025c59">Account Information :</h5>
+		</div>
+	</dxi-item>
 		<dxi-item itemType="group" cssClass="second-group" [colCount]="1" >
 			<dxi-item itemType="group">
-				<dxi-item dataField="email"></dxi-item>
+				<dxi-item dataField="email" [editorOptions]="{readOnly:true}"></dxi-item>
 			</dxi-item>
 			<!-- <dxi-item dataField="Notes" [colSpan]="2" editorType="dxTextArea" [editorOptions]="{ height: 140 }"></dxi-item> -->
 		</dxi-item>
@@ -43,16 +51,27 @@
 	<dx-form 
 	*ngIf="!etudiant.user.email_verified_at"
 	[formData]="etudiant.user">
+		<dxi-item >
+			<div *dxTemplate>
+				<h5 style="color:#025c59">Account Information :</h5>
+			</div>
+		</dxi-item>
 		<dxi-item itemType="group" cssClass="second-group" [colCount]="1" >
 			<dxi-item itemType="group">
-				<dxi-item dataField="email"></dxi-item>
-				<dxi-item dataField="passwoard"></dxi-item>
+				<dxi-item dataField="email" [editorOptions]="{readOnly:true}"></dxi-item>
+				<dxi-item caption="passwoard" dataField="pwd" [editorOptions]="{readOnly:true}">
+					<dxo-label text="Passwoard" ></dxo-label>
+				</dxi-item>
 			</dxi-item>
 			<!-- <dxi-item dataField="Notes" [colSpan]="2" editorType="dxTextArea" [editorOptions]="{ height: 140 }"></dxi-item> -->
 		</dxi-item>
 	</dx-form>
 	</div>
+	<div>
+		<h5 style="color:#025c59">The absence :</h5>
+		<app-absence></app-absence>
+	</div>
 		
 </app-portlet>
-</div>
+
 <app-loadingpage loading={{loading}} idparent="parent"></app-loadingpage>

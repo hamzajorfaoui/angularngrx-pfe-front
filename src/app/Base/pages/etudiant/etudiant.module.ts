@@ -17,6 +17,7 @@ import { DxTabPanelModule,
         DxFormModule} from 'devextreme-angular';
 import { TABetudiantComponent } from './tabetudiant/tabetudiant.component';
 import { SearchetudiantComponent } from './searchetudiant/searchetudiant.component';
+import { AbsenceComponent } from './absence/absence.component';
 
 export const EtudiantRouting : Routes = [
   {path:'gestion' , component:EtudiantComponent , children:[
@@ -30,7 +31,8 @@ export const EtudiantRouting : Routes = [
     EtudiantComponent,
     TABetudiantComponent,
     EtudprofileComponent,
-    SearchetudiantComponent
+    SearchetudiantComponent,
+    AbsenceComponent
   ],
   imports: [
     DxRadioGroupModule,

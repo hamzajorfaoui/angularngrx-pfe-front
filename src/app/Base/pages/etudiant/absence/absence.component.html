@@ -1,0 +1,16 @@
+<div class="absence_full">
+<svg>
+    <g *ngFor="let S of semaine ; let i = index" 
+       [ngStyle]="{'transform': 'translateX(' + S.translate + 'px)'}">
+        <rect 
+        width="12" 
+        height="12" 
+        *ngFor="let JR of S.jour; let index = index" 
+        [attr.y]="jour_positions_Y(index)"
+        [attr.data_jour]="JR"
+        [attr.data_semaine]="S.number"
+        style="fill:#d3d3d3" 
+        (mouseover)="tooltip($event)"/>
+    </g>
+</svg>
+</div>

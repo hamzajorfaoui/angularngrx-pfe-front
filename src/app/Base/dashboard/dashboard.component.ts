@@ -15,7 +15,10 @@ import { Router, NavigationStart, NavigationEnd, NavigationError, NavigationCanc
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
- 
+  onActivate(event , outlet) {
+    outlet.scrollTop = 0;
+   }
+
   constructor(private store:Store<AppState> ,router:Router) { 
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {

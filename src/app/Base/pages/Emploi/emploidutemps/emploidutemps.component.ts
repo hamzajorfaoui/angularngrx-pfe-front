@@ -1,4 +1,4 @@
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import  CustomStore  from 'devextreme/data/custom_store';
 import { EmploiService } from './../emploi.service';
 import { FiliereService } from './../../filiere/filiere.service';
@@ -20,7 +20,7 @@ export interface emploidutemps{
 export class EmploidutempsComponent implements OnInit {
 
   buttonOptions: any = {
-    text: "Ajouter une actualité",
+    text: "Ajouter un Emploi du Temps",
     type: "success",
     useSubmitBehavior: true
   }
@@ -116,7 +116,12 @@ export class EmploidutempsComponent implements OnInit {
    
   }
   changefiliere = (e)=>{
+    if(e.selectedItem != null){
     this.Selectsemestre(e.selectedItem.niveau);
+    }else{
+      this.Selectsemestre(1);
+    }
+    
   }
   date = 0;
   Selectsemestre(niveau){
@@ -135,14 +140,16 @@ export class EmploidutempsComponent implements OnInit {
       break;
   }
   return this.semestre.value;
-  }
+  } 
+  @ViewChild('formtarget', { static: false }) formtarget: DxFormComponent;
   @ViewChild('targetDataGrid', { static: false }) dataGrid: DxDataGridComponent;
   onFormSubmit = (e) => {  
     this.loading = true;
     e.preventDefault();
     this.EmpS.addemploidutemps(this.dataSource).subscribe(data=>{
-    this.OtherImages = [];
-    this.dataSource.emploiImage=[];
+    // this.OtherImages = [];
+    // this.dataSource.emploiImage=[];
+    this.formtarget.instance.resetValues();
     this.loading = false;
     this.dataGrid.instance.refresh();
     })
