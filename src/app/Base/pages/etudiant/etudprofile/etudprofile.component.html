@@ -6,10 +6,10 @@
 	</div>
 	<div class="tableau" *ngIf="etudiant">
 		<div class="p-3 mb-2 bg-info text-white" *ngIf="!etudiant.user.email_verified_at">
-			cet etudiant n'as pas encore créer un compte !!
+			cet etudiant n'as pas encore créée un compte !!
 		</div>
 		<div class="p-3 mb-2 bg-info text-white" *ngIf="etudiant.user.email_verified_at">
-			cet etudiant a créer son compte !!
+			cet etudiant a créée son compte !!
 		</div>
 	<form (submit)="onFormSubmit($event)">
 	<dx-form id="form"

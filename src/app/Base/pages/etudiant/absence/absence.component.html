@@ -1,19 +1,57 @@
 <div class="absence_full">
-<svg>
-    <g *ngFor="let S of semaine ; let i = index" 
-       [ngStyle]="{'transform': 'translateX(' + S.translate + 'px)'}">
-        <rect 
-        width="12" 
-        height="12" 
-        *ngFor="let JR of S.jour; let index = index" 
-        [attr.y]="jour_positions_Y(index)"
-        [attr.data_jour]="JR"
-        [attr.data_semaine]="S.number"
-        style="fill:#d3d3d3;" 
-        (click)="select_day($event)"
-        (mouseover)="tooltip($event)"/>
-    </g>
-    <text x="0" y="9" class="semaine">1</text>
-    <text x="141" y="9" class="semaine">1</text>
-</svg>
+  <div class="absence_content">
+  <div class="row">
+  <div class="col-6" *ngFor="let semestre of Semestres">
+    <h6>{{semestre}}</h6>
+    <svg>
+      <g transform="translate(45, 20)">
+        <g *ngFor="let S of semaine ; let i = index" 
+         [ngStyle]="{'transform': 'translateX(' + S.translate + 'px)'}">
+          <rect 
+          width="12" 
+          height="12" 
+          *ngFor="let JR of S.jour; let index = index" 
+          [attr.y]="jour_positions_Y(index)"
+          [attr.data_jour]="JR"
+          [attr.data_semaine]="S.number"
+          style="fill:#d3d3d3;" 
+          (click)="select_day($event)"
+          (mouseover)="tooltip($event)"/>
+      </g>
+      <text x="-45" y="-9" class="semaine">Semaine :</text>
+      <text class="semaine" 
+            *ngFor="let S of semaine | impaire; let index = index"
+             y="-9" [attr.x]="jour_positions_Y(index)*2">
+          {{S.number}}
+      </text>  
+      <text  *ngFor="let ST of Semaines_text ; let index = index"
+       x="-25" [attr.y]="jour_positions_Y(index)*2+10" class="semaine">
+       {{ST}}
+      </text>
+      </g>
+  </svg>
+  </div>
+  </div>
+<div class="absence_form">
+  <h6> S1 : Semaine 1 Vendredi </h6>
+    <div class="row">
+      <div class="col-md-6 col-lg-3 col-sm-12" *ngFor="let seance of Seances">
+        <label>
+          <input type="checkbox" value="1" class="card-input-element" formControlName="product" />
+            <div class="panel panel-default card-input">
+                  <div class="card" style="width: 100%;">
+                          <div class="card-body">
+                            <h6 class="card-title">Seance {{seance}}:<span class="absent_text">Absent</span></h6>
+                          </div>
+                          <img src="assets/check_1.png" class="card-img-top no_absent_pic pic" alt="..." style="-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+                          filter: grayscale(100%);">
+                          <img src="assets/check_2.png" class="card-img-top absent_pic pic" alt="..." style="-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+                          filter: grayscale(100%);">
+                        </div>
+            </div>
+        </label>
+      </div>
+    </div>
+  </div>
+  </div>
 </div>
