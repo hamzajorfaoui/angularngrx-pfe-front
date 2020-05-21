@@ -16,6 +16,7 @@ export class AbsenceComponent implements OnInit {
   Seances=[1,2,3,4]
   Semestres=["S1","S2"];
   Semaines_text=["Lun","Mer","Ven"];
+  Semaines_full_text=["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
   semaine:any[]=[];
   jour_positions_Y(i){
     return i*14
@@ -28,15 +29,21 @@ export class AbsenceComponent implements OnInit {
   }
   }
   tooltip(e){
-    var _this = e.target;
+    if(e){
+     var _this = e.target;
+    console.log((e.pageX + ' , ' + e.pageY));
     $(_this).tooltip({
-      title: 'Semaine '+e.target.getAttribute('data_semaine')+' Jour '+e.target.getAttribute('data_jour')
-    }).tooltip('show');
+      title: 'Semaine '+e.target.getAttribute('data_semaine')+' '+this.Semaines_full_text[e.target.getAttribute('data_jour')]
+    }).tooltip('show');  
+    }
+   
   }
   select_day(e){
+    if(e){
     var _this = e.target;
     var semaine = _this.getAttribute('data_semaine');
     var jour = _this.getAttribute('data_jour');
+    var semestre = _this.getAttribute('data_semestre');
     $('rect')
     .filter(function(index){
       return this != _this
@@ -45,5 +52,16 @@ export class AbsenceComponent implements OnInit {
     $(_this)    
     .css('opacity','1');
 
+    this.apply_changes(semestre , semaine , jour);  
+    }
+
+  }
+  jour_selected;
+  apply_changes(semestre , semaine , jour){
+   this.jour_selected={
+     'semestre':semestre,
+     'semaine':semaine,
+     'jour':jour
+   }
   }
 }

@@ -22,6 +22,27 @@
 }
 
 .contenu{
-  width: calc(100% - 10px);
+  width: calc(100% - 20px);
   margin: 10px;
+}
+@media screen and (max-width: 900px) {
+  .item2{
+    display: none;
+  }
+  .grid-container {
+    background-color: #f3f3f3;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns:  1fr;
+      grid-template-rows: 50px 1fr 50px;
+      grid-template-areas:
+        " header"
+        " main"
+        " main";
+      height: 100vh;
+  }
+}
+.block{
+  display: block;
+  width: 100%;
 }

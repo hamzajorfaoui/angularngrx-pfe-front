@@ -1,15 +1,13 @@
 .absence_full{
     width: 100%;
-    min-height: 500px;
     height: auto;
-    border: 1px solid #000000;
     margin-top: 10px;
     margin-bottom: 60px;
     overflow-x: auto;
     overflow-y: hidden;
 }
 .absence_content{
-    min-width: 640px;
+    min-width: 802px;
     padding: 30px;
 }
 .semaine{
@@ -61,6 +59,29 @@
     text-align: center !important;
     align-items: center !important;
 }
+.card-body{
+    padding: 0.25rem !important;
+}
 .card-img, .card-img-bottom, .card-img-top {
     width: 50% !important;
 }
+
+::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #429675; 
+    border-radius: 20px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #025c59; 
+  }

@@ -7,10 +7,10 @@
         <app-aside-bar></app-aside-bar>
       </div>
     <div class="item3" #outlet>
-    <div class="container contenu" appRouteTransit >
-        <router-outlet (activate)="onActivate($event , outlet)" ></router-outlet>
+        <div class="contenu" appRouteTransit>
+            <router-outlet (activate)="onActivate($event , outlet)" ></router-outlet>
+        </div>
     </div>
-</div>
 
 </div> 
 <app-loadingpage loading={{loading}} idparent="all"></app-loadingpage>
