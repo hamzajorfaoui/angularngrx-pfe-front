@@ -6,16 +6,28 @@
     height: 56px;
 }
 .icone{
-    
+     cursor: pointer;
      border-color: transparent;
      background-color: transparent;
      font-size: 22px;
      margin-left: 25px;
-   
+}
+.icone-leftside{
+    cursor: pointer;
+    border-color: transparent;
+    background-color: transparent;
+    font-size: 22px;
+    display: none;
+}
+.icone-leftside-open{
+    margin-left: 221px;
 }
 .icones{
     float: right;
     max-width: 200px;
+}
+.iconesleft{
+    margin-right: auto;
 }
 // .shadow {
 //     box-shadow: 0 .1rem 1rem rgba(0,0,0,.15)!important;
@@ -25,4 +37,9 @@
 }
 .border-bottom {
     border-bottom: 1px solid #439777!important;
+}
+@media screen and (max-width: 900px) {
+    .icone-leftside{
+        display: block;
+    }
 }

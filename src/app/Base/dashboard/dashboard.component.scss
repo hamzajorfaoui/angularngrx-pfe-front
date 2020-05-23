@@ -5,7 +5,7 @@
 }
 
 .item1 { grid-area: header; }
-.item2 { grid-area: menu;  }
+.item2 { grid-area: menu; }
 .item3 { grid-area: main;   margin-top: 10px; overflow: auto; }
 
 .grid-container {
@@ -26,9 +26,6 @@
   margin: 10px;
 }
 @media screen and (max-width: 900px) {
-  .item2{
-    display: none;
-  }
   .grid-container {
     background-color: #f3f3f3;
       overflow: hidden;

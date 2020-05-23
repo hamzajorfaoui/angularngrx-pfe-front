@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Aside } from "./aside";
 declare var $;
 
@@ -11,9 +11,11 @@ export class AsideBarComponent implements OnInit, AfterViewInit {
 
   Contents:any=[]; 
   Items:any =[];
+  @Input() asidebar_closed;
   constructor() { }
 
   ngOnInit() {
+    console.log(this.asidebar_closed);
     this.Contents = Aside.content;
     this.Items=Aside.items;
     this.Showcollapse();

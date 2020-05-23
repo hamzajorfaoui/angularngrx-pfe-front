@@ -1,10 +1,10 @@
 
 <div class="grid-container" *ngIf="!loading" id="all">
     <div class="item1">
-        <app-nav-bar></app-nav-bar>
+        <app-nav-bar asidebar_closed={{asidebar_closed}} (toggle_s)="toggle_sidebar($event)"></app-nav-bar>
     </div>
     <div class="item2">
-        <app-aside-bar></app-aside-bar>
+        <app-aside-bar asidebar_closed={{asidebar_closed}}></app-aside-bar>
       </div>
     <div class="item3" #outlet>
         <div class="contenu" appRouteTransit>

@@ -1,7 +1,7 @@
 import { DepartementFacade } from './../../State/Departement/departement.facade';
 import { Observable } from 'rxjs';
 import { LoginserviceService } from './../../LoginPage/loginservice.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Store , select } from "@ngrx/store";
 import * as LoginActions from "../../LoginPage/state/login.action";
 import * as LoginReducer from "../../LoginPage/state/login.reducer";
@@ -18,7 +18,16 @@ export class DashboardComponent implements OnInit {
   onActivate(event , outlet) {
     outlet.scrollTop = 0;
    }
-
+  asidebar_closed = 1;
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if(event.target.innerWidth==900){
+      this.asidebar_closed = 1;
+    }
+  }
+  toggle_sidebar(e){
+    this.asidebar_closed = e;
+  }
   constructor(private store:Store<AppState> ,router:Router) { 
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {

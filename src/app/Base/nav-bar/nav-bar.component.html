@@ -30,6 +30,9 @@
       </ul>
       
     </div> -->
+    <div class="iconesleft" [ngClass]="{'icone-leftside-open':asidebar_closed==0}">
+      <span class="icone-leftside" (click)="toggle_sidebar()"><a  class="text-dark"><i class="fas fa-bars"></i></a></span>
+    </div>
 <div class="icones">
       <span class="icone rightside"><a href="#" class="text-dark"><i class="fas fa-address-book"></i></a></span>
           <span class=" icone "><a href="#" class="text-dark"><i class="fas fa-bell"></i></a></span>
