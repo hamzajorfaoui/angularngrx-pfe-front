@@ -32,6 +32,19 @@
     color: #cc2e2e;
     display:none;
 }
+.saved_text{
+    font-size: 10px;
+    color: #28a745;
+}
+.absence_0{
+    fill:#d3d3d3;
+}
+.absence_1{
+    fill:#ff00008c;
+}
+.absence_3{
+    fill:#ff0000;
+}
 .card-input-element:checked  {
     + .card-input{
        box-shadow: 0 0 1px 1px #cc2e2e; 
@@ -53,7 +66,7 @@
     display:block;  
 }
 .card-title{
-    height: 38px;
+    height: 50px;
 }
 .card{
     text-align: center !important;
@@ -84,4 +97,15 @@
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #025c59; 
+  }
+
+  .save_section{
+    display: flex;
+    padding: 10px;
+    .save{
+        margin-left: auto;
+    }
+    .save:disabled{
+     cursor: no-drop;
+    }
   }

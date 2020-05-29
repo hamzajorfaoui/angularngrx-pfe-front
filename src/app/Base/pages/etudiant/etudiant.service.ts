@@ -97,5 +97,44 @@ export interface filiere{
             .set('column', searchwith)
     })
    }
+   get_etudiant_absence(id){ 
+    return this.http.get<any[]>("http://127.0.0.1:8000/api/absences",  
+    {
+    params: new HttpParams()
+    .set('etudiant_id', id)
+    });
+   }
+   get_day_absence(etudiant_id ,semestre_id , semaine , jour ){ 
+    return this.http.get<any[]>("http://127.0.0.1:8000/api/absencesofday",  
+    {
+    params: new HttpParams()
+    .set('etudiant_id', etudiant_id)
+    .set('semestre_id', semestre_id)
+    .set('semaine', semaine)
+    .set('jour', jour)
+    });
+   }
+   add_day_absence(etudiant_id ,semestre_id , semaine , jour , seances ){ 
+    const formData = new FormData();
+    formData.set( "etudiant_id",etudiant_id);
+    formData.set( "semestre_id",semestre_id);
+    formData.set( "semaine",semaine);
+    formData.set( "jour",jour);
+    var i=0;
+    for (const seance of seances) {
+      formData.append('seance['+i+']', seance);
+      i++;
+    }
+    return this.http.post<any[]>("http://127.0.0.1:8000/api/absence",  formData);
   }
+  remove_seance_abcense(etudiant_id ,semestre_id , semaine , jour , seance){
+    return this.http.delete("http://127.0.0.1:8000/api/absence/"+etudiant_id,{
+      params: new HttpParams()
+      .set('semestre_id', semestre_id)
+      .set('semaine', semaine)
+      .set('jour', jour)
+      .set('seance', seance)
+      });
+  }
+}
 

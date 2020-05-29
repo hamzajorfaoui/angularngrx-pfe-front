@@ -4,7 +4,8 @@
 	<div >
      <a (click)="goback()" class="retour"><i class="fas fa-arrow-left"></i><span class="retorspan"> Retour</span></a>
 	</div>
-	<div class="tableau" *ngIf="etudiant">
+	<div *ngIf="etudiant">
+	<div class="tableau">
 		<div class="p-3 mb-2 bg-info text-white" *ngIf="!etudiant.user.email_verified_at">
 			cet etudiant n'as pas encore créée un compte !!
 		</div>
@@ -69,9 +70,9 @@
 	</div>
 	<div>
 		<h5 style="color:#025c59">The absence :</h5>
-		<app-absence></app-absence>
+		<app-absence etudiantid={{etudiant.id}} etudiantniveau={{etudiant.niveau}}></app-absence>
 	</div>
-		
+</div>
 </app-portlet>
 
 <app-loadingpage loading={{loading}} idparent="parent"></app-loadingpage>

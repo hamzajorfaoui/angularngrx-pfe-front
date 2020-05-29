@@ -13,6 +13,7 @@ import { DxTabPanelModule,
         DxDateBoxModule,
         DxTextBoxModule,
         DxListModule,
+        DxPopupModule,
         DxRadioGroupModule,
         DxFormModule} from 'devextreme-angular';
 import { TABetudiantComponent } from './tabetudiant/tabetudiant.component';
@@ -47,6 +48,7 @@ export const EtudiantRouting : Routes = [
     DxTextAreaModule,
     DxDateBoxModule,
     DxFormModule,
+    DxPopupModule,
 
     CommonModule,
     RouterModule.forChild(EtudiantRouting)

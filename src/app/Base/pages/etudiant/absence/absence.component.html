@@ -2,14 +2,16 @@
   <div class="absence_content">
   <div class="row">
   <div class="col-4" >
-    <div class="row" style="white-space: pre" *ngFor="let semestre of Semestres">
-      <!-- <div class="block">
-           <h6>{{semestre}}</h6>
-      </div> -->
+    <div class="d-flex justify-content-center">
+        <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status" *ngIf="NB_absences.length==0">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="row" style="white-space: pre" *ngFor="let NBAB of NB_absences">
     <div class="block">
           <svg>
             <g transform="translate(45, 45)">
-              <g *ngFor="let S of semaine ; let i = index" 
+              <g *ngFor="let S of NBAB.semaine ; let i = index" 
               [ngStyle]="{'transform': 'translateX(' + S.translate + 'px)'}">
                 <rect 
                 width="12" 
@@ -17,13 +19,13 @@
                 *ngFor="let JR of S.jour; let index = index" 
                 [attr.y]="jour_positions_Y(index)"
                 [attr.data_jour]="index"
-                [attr.data_semestre]="semestre"
+                [attr.data_semestre]="NBAB.semestre.text"
                 [attr.data_semaine]="S.number"
-                style="fill:#d3d3d3;" 
-                (click)="select_day($event)"
+                [ngClass]="{'absence_0':JR.nb_absences==0,'absence_1':JR.nb_absences>0,'absence_3':JR.nb_absences>2}"
+                (click)="select_day($event,NBAB.semestre.id)"
                 (mouseover)="tooltip($event)"/>
             </g>
-            <text x="-45" y="-25" style="font-weight: 500;" >{{semestre}}</text>
+            <text x="-45" y="-25" style="font-weight: 500;" >{{NBAB.semestre.text}}</text>
             <text x="-45" y="-9" class="semaine">Semaine :</text>
             <text class="semaine" 
                   *ngFor="let S of semaine | impaire; let index = index"
@@ -45,11 +47,19 @@
         <div class="row">
           <div class="col" *ngFor="let seance of Seances">
             <label>
-              <input type="checkbox" value="1" class="card-input-element" formControlName="product" />
+              <input type="checkbox" value="1" 
+                    class="card-input-element" 
+                    formControlName="product" 
+                    [checked]="seance.absent"
+                    (change)="check_seance($event , seance.absent , seance.number)"
+                    />
                 <div class="panel panel-default card-input">
                       <div class="card" style="width: 100%;">
                               <div class="card-body">
-                                <h6 class="card-title">Seance {{seance}}:<span class="absent_text">Absent</span></h6>
+                                <h6 class="card-title">Seance {{seance.number}}:
+                                  <span class="absent_text">Absent</span>
+                                  <span class="saved_text" *ngIf="seance.absent">Enregistré</span>
+                                </h6>
                               </div>
                               <img src="assets/check_1.png" class="card-img-top no_absent_pic pic" alt="..." style="-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
                               filter: grayscale(100%);">
@@ -59,6 +69,16 @@
                 </div>
             </label>
           </div>
+          <div class="d-flex align-items-center" *ngIf="Seances.length==0" style="height: 70px; width: 100%;">
+            <strong>Loading...</strong>
+            <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="save_section" *ngIf="Seances.length != 0">
+          <button type="button" 
+                  class="btn btn-success save" 
+                  (click)="save_seance_absent()"
+                  [disabled]="Etudiant_Seance_Selected.length == 0">Enregistrer</button>
         </div>
       </div>
       <div *ngIf="!jour_selected" style="text-align: center;">
@@ -68,3 +88,38 @@
   </div>
   </div>
 </div>
+
+  <dx-popup
+  #popupcancel
+  id="popupcancel"
+  [width]="300"
+  [height]="95"
+  [showTitle]="false"
+  title="Information"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [(visible)]="popupVisible">
+          <div style="display: flex;width: 100%;justify-content: center;"
+              *dxTemplate="let data of 'content'" >
+              <span>Voulez-vous supprimer cette Absence ?</span>
+              
+          </div>
+          <dxi-toolbar-item
+              toolbar="bottom"
+              widget="dxButton"
+              location="center"
+              [options]="{
+                  text: 'Yes',
+                  onClick: this.annuleryes
+              }">
+          </dxi-toolbar-item>
+          <dxi-toolbar-item
+              toolbar="bottom"
+              widget="dxButton"
+              location="center"
+              [options]="{
+                  text: 'No',
+                  onClick: annulerno
+              }">
+          </dxi-toolbar-item>
+  </dx-popup>
