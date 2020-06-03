@@ -16,19 +16,18 @@ export class AbsenceComponent implements OnInit {
   
   NB_absences = [];
   Semestres=[];
+  Etudiant_absence_somme =0;
   ngOnInit() {
     this.Semestres=Semestres[this.etudiantniveau-1].semestre;
-  
     this.service.get_etudiant_absence(this.etudiantid).subscribe(
       data=>{
-        console.log(data)
         for (const semestre of this.Semestres) {
-        this.display_data();
+        this.semaine =this.display_data(); 
         for (const absence of data) {
           if(absence.semester_id == semestre.id){
           this.semaine[absence.semaine-1].jour[absence.jour-1].nb_absences = absence.nb_absence;
+          this.Etudiant_absence_somme +=absence.nb_absence;
           }
-
         }
         this.NB_absences.push({
           semestre:semestre,
@@ -45,7 +44,7 @@ export class AbsenceComponent implements OnInit {
     return i*14
   }
   display_data(){
-    this.semaine=[];
+  var semaine=[];
   for (let index = 0; index < 15; index++) {
     var jour = [];
     for (let index = 0; index < 6; index++){
@@ -54,15 +53,35 @@ export class AbsenceComponent implements OnInit {
         nb_absences:0
       });
     }
-    this.semaine.push({number:index+1 ,
+    semaine.push({number:index+1 ,
                        translate:this.jour_positions_Y(index),
                        jour:jour});
   }
+  return semaine;
+  }
+  nb_seance_totext(nbseance_origi){
+  var nbseance = nbseance_origi;
+  var total={
+    avertisement:0,
+    blamme :0
+  }
+  while(nbseance > 3){
+    console.log(nbseance);
+  if(nbseance>9){
+   total.blamme+=1;
+   nbseance-=9;
+  }else {
+    total.avertisement+=1;
+    nbseance-=3;
+  }
+  }
+  var result =  total.blamme>0 ? total.blamme+" Blame ":" ";
+  result += total.avertisement+" Avertisement";
+  return result;
   }
   tooltip(e){
     if(e){
      var _this = e.target;
-    // console.log((e.pageX + ' , ' + e.pageY));
     $(_this).tooltip({
       title: 'Semaine '+e.target.getAttribute('data_semaine')+' '+this.Semaines_full_text[e.target.getAttribute('data_jour')]
     }).tooltip('show');  
@@ -122,7 +141,6 @@ export class AbsenceComponent implements OnInit {
    }else{
     this.Etudiant_Seance_Selected = this.Etudiant_Seance_Selected.filter((a)=>{return a != seance_number});
    }
-   console.log(this.Etudiant_Seance_Selected);
   if(seance_absent){
     e.target.checked = true;
     this.popupVisible = true;
@@ -160,7 +178,7 @@ export class AbsenceComponent implements OnInit {
         data=>{
           this.NB_absences.map((NB_A)=>{
             if(NB_A.semestre.id == this.jour_selected.semestre_id){
-              NB_A.semaine[this.jour_selected.semaine-1].jour[this.jour_selected.jour].nb_absences =NB_A.semaine[this.jour_selected.semaine-1].jour[this.jour_selected.jour].nb_absences -1;
+              NB_A.semaine[this.jour_selected.semaine-1].jour[this.jour_selected.jour].nb_absences -= 1;
             }
           });
           this.Seances[this.Seance_Selected-1].absent = false;

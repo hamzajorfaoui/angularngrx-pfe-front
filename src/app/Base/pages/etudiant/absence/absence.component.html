@@ -7,6 +7,9 @@
           <span class="sr-only">Loading...</span>
         </div>
     </div>
+    <div class="row" *ngIf="NB_absences.length>0">
+     <p>le Total : {{nb_seance_totext(Etudiant_absence_somme)}}</p> 
+    </div>
     <div class="row" style="white-space: pre" *ngFor="let NBAB of NB_absences">
     <div class="block">
           <svg>
@@ -97,7 +100,7 @@
   [showTitle]="false"
   title="Information"
   [dragEnabled]="false"
-  [closeOnOutsideClick]="true"
+  [closeOnOutsideClick]="false"
   [(visible)]="popupVisible">
           <div style="display: flex;width: 100%;justify-content: center;"
               *dxTemplate="let data of 'content'" >
