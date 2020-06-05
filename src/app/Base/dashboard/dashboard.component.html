@@ -1,6 +1,14 @@
 
 <div class="grid-container" *ngIf="!loading" id="all">
     <div class="item1">
+        <div class="progress over" *ngIf="progressbar_value>0">
+            <div class="progress-bar"
+                 role="progressbar" 
+                 [ngStyle]="{'width': progressbar_value+'%'}" 
+                 aria-valuenow="25" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100"></div>
+        </div>
         <app-nav-bar asidebar_closed={{asidebar_closed}} (toggle_s)="toggle_sidebar($event)"></app-nav-bar>
     </div>
     <div class="item2">

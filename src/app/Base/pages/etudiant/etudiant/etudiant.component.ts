@@ -1,6 +1,7 @@
 import { EtudiantService } from './../etudiant.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { DxTreeViewComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-etudiant',
@@ -18,20 +19,14 @@ export class EtudiantComponent implements OnInit {
   changeSelection(e) {
     if(e.itemData.departement_id){
     if(this.selectedfiliereid != e.itemData.id){
-      // console.log(e.itemData.id)
-      // this.selectedfiliereid =e.itemData.id;
-      // this.selectedfilieretitle=e.itemData.text;
       this.route.navigate(['/dashboard/etudiant/gestion/'+e.itemData.text+'/'+parseInt(e.itemData.id)])
     }
     }
-   
-      
   }
 
   constructor(private service: EtudiantService , private route:Router , private activroute: ActivatedRoute) {
     service.getdeptfiliere().subscribe(data=>{
       this.deptfilieres = data;
-      console.log("fallll")
        if(this.activroute.firstChild){
          this.deptfilieres.forEach(element => {
            element['items'].forEach(element => {
@@ -44,22 +39,26 @@ export class EtudiantComponent implements OnInit {
     },(er)=>{},()=>{})
    
   }
+  @ViewChild("targettree", { static: false }) dxtree: DxTreeViewComponent;
 
   ngOnInit() {
 
     this.route.events.subscribe(event=>{
       if (event instanceof NavigationEnd) {
        if(this.route.url == '/dashboard/etudiant/gestion'){
-        this.deptfilieres.forEach(element => {
-          element['items'].forEach(element => {
-                element.selected = false;
-                this.selectedfiliereid = 0;
-          });
-        });
+        this.dxtree.instance.unselectAll();
+        this.selectedfiliereid = 0;
        }
       }
     })
  
+  }
+  imageVisible = true;
+  onActivate(e){
+  this.imageVisible=false;
+  }
+  onDeactivate(e){
+    this.imageVisible=true;
   }
 
 

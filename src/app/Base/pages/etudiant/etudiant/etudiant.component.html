@@ -2,6 +2,7 @@
 
      <div class="left-content">
         <dx-tree-view
+           #targettree
             keyExpr="id"
             noDataText=""
             [dataSource]="deptfilieres"
@@ -12,8 +13,12 @@
         <!-- <app-loadingpage loading={{loading}} idparent="deptfil"></app-loadingpage> -->
     </div>
     <div class="right-content">
-        <!-- <app-tabetudiant idfiliere={{selectedfiliereid}} Filieretitle={{selectedfilieretitle}}></app-tabetudiant> -->
-        <router-outlet></router-outlet>
+        <div *ngIf="imageVisible" style="text-align: center;">
+            <img src="assets/undraw_Choose_bwbs.svg" >
+          </div>        
+          <router-outlet 
+          (deactivate)='onDeactivate($event)'
+          (activate)="onActivate($event)"></router-outlet>
         
     </div>   
     

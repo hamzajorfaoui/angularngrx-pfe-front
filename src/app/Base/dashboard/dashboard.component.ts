@@ -28,17 +28,24 @@ export class DashboardComponent implements OnInit {
   toggle_sidebar(e){
     this.asidebar_closed = e;
   }
-  constructor(private store:Store<AppState> ,router:Router) { 
+  progressbar_value :number = 0;
+  constructor(private store:Store<AppState> ,router:Router) {
+    var interval; 
     router.events.forEach((event) => {
       if(event instanceof NavigationStart) {
-        console.log("ha l3are ma 5dme !!")
+        this.progressbar_value=0;
+        interval=setInterval(()=>{
+          if(this.progressbar_value<90){
+          this.progressbar_value = this.progressbar_value + 10;
+          }
+        },50);
       }
       if(event instanceof NavigationEnd) {
+        setTimeout(()=>{
+          clearInterval(interval);
+          this.progressbar_value=0;
+        },1000);
       }
-      // NavigationEnd
-      // NavigationCancel
-      // NavigationError
-      // RoutesRecognized
     });
 
   }
