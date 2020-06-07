@@ -16,7 +16,8 @@ export class AbsenceComponent implements OnInit {
   
   NB_absences = [];
   Semestres=[];
-  Etudiant_absence_somme =0;
+  Etudiant_absence_somme :Number = 0;
+  Etudiant_absent_text   :String   = "";
   ngOnInit() {
     this.Semestres=Semestres[this.etudiantniveau-1].semestre;
     this.service.get_etudiant_absence(this.etudiantid).subscribe(
@@ -34,6 +35,7 @@ export class AbsenceComponent implements OnInit {
           semaine:this.semaine
         })
       }
+      this.Etudiant_absent_text = this.nb_seance_totext(this.Etudiant_absence_somme);
       }
     )
   }
@@ -60,25 +62,25 @@ export class AbsenceComponent implements OnInit {
   return semaine;
   }
   nb_seance_totext(nbseance_origi){
-  var nbseance = nbseance_origi;
-  var total={
+  let nbseance = nbseance_origi;
+  let total={
     avertisement:0,
     blamme :0
   }
   while(nbseance > 3){
-    console.log(nbseance);
   if(nbseance>9){
    total.blamme+=1;
    nbseance-=9;
-  }else {
+  }else { 
     total.avertisement+=1;
     nbseance-=3;
   }
   }
-  var result =  total.blamme>0 ? total.blamme+" Blame ":" ";
+  let result =  total.blamme>0 ? total.blamme+" Blame ":" ";
   result += total.avertisement+" Avertisement";
   return result;
   }
+  
   tooltip(e){
     if(e){
      var _this = e.target;

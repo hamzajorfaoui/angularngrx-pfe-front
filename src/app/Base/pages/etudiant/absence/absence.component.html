@@ -1,14 +1,14 @@
 <div class="absence_full">
   <div class="absence_content">
+    <div class="row" *ngIf="NB_absences.length>0">
+      <p style="font-weight: bold; color: #025c59;">le Total : {{Etudiant_absent_text}}</p> 
+     </div>
   <div class="row">
   <div class="col-4" >
     <div class="d-flex justify-content-center">
         <div class="spinner-grow" style="width: 5rem; height: 5rem;" role="status" *ngIf="NB_absences.length==0">
           <span class="sr-only">Loading...</span>
         </div>
-    </div>
-    <div class="row" *ngIf="NB_absences.length>0">
-     <p style="font-weight: bold; color: #025c59;">le Total : {{nb_seance_totext(Etudiant_absence_somme)}}</p> 
     </div>
     <div class="row" style="white-space: pre" *ngFor="let NBAB of NB_absences">
     <div class="block">

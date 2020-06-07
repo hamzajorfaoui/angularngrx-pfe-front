@@ -10,6 +10,7 @@
             id="gridContainer"
             [dataSource]="dataSource"
             keyExpr="id"
+            [columnHidingEnabled]="true"
             [repaintChangesOnly]="true"
             [showBorders]="true">
             
@@ -54,7 +55,7 @@
             <dxi-column dataField="phone"></dxi-column>
             <dxi-column dataField="created_at"></dxi-column>
             <dxi-column dataField="updated_at"></dxi-column>
-            <dxi-column dataField="departement_id">
+            <dxi-column dataField="departement_id" caption="Departement">
             <dxo-lookup
                 [dataSource]="departements"
                 displayExpr="name"

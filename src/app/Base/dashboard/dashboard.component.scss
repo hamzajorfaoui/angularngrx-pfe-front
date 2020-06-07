@@ -6,14 +6,14 @@
 
 .item1 { grid-area: header; }
 .item2 { grid-area: menu; }
-.item3 { grid-area: main;   margin-top: 10px; overflow: auto; }
+.item3 { grid-area: main;  overflow: auto; }
 
 .grid-container {
   background-color: #f3f3f3;
     overflow: hidden;
     display: grid;
     grid-template-columns: 220px 1fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-rows: 56px 1fr 50px;
     grid-template-areas:
       "menu header"
       "menu main"
@@ -34,7 +34,7 @@
       overflow: hidden;
       display: grid;
       grid-template-columns:  1fr;
-      grid-template-rows: 50px 1fr 50px;
+      grid-template-rows: 56px 1fr 50px;
       grid-template-areas:
         " header"
         " main"
